@@ -11,5 +11,9 @@ StereoIsomers
 PM: Xing Tao Shi
 Jackie Woo, Manahal Tabassum, Md Abedin
 
-xingtaoS -- 2017-10-19 04:06
+xingtaoS -- 2017-12-19 04:06:21
 devlog created
+
+manahalT -- 2017-12-19 13:58:32
+worked on project
+
