@@ -17,3 +17,6 @@ devlog created
 manahalT -- 2017-12-19 13:58:32
 worked on project
 
+manahalT -- 2017-12-20 14:05:17
+worked on database building users table
+
