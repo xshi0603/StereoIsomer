@@ -23,3 +23,6 @@ worked on database building users table
 xingtaoS -- 2017-12-21 14:00:35
 worked on design doc & app.py
 
+mdA -- 2017-12-21 22:31:55
+added design doc pdf and made folder with design doc images we used in case we need to modify the doc later
+
