@@ -1,1 +1,3 @@
 # StereoIsomer
+
+Our project is essentially the cookie clicker game where you have a giant cookie on the left hand side of the screen that the user can click to generate cookies which will be counted. Using a certain number of cookies, the user can buy items from the store which will help them generate cookies automatically on specified time intervals. Achievements will be tracked and there will be a leaderboard. This means that users must create an account, which will keep track of the cookies they have made. A weather API will be used in order to determine the theme of the page.
