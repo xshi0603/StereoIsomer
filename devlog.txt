@@ -29,3 +29,6 @@ added design doc pdf and made folder with design doc images we used in case we n
 jackieW -- 2017-12-24 14:53:59
 added cookie button and click value upgrade.
 
+jackieW -- 2017-12-26 13:05:45
+added generator and button descriptions
+
