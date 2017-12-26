@@ -37,4 +37,15 @@ var upgradeClickVal = function(val){
 
 upClickValHTML.addEventListener('click', function() { upgradeClickVal(upClickVal);});
 
+// generator
+var gen0 = document.getElementById("gen0");
+var gen0Cost = 100;
+gen0.addEventListener('click', function() {
+    if (cookieBank - gen0Cost > 0){
+	addToCookieBank(-100);
+	setInterval(function() {
+	    addToCookieBank(10);
+	} ,1000);
+    }
+});
 
