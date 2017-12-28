@@ -1,3 +1,5 @@
+
+// cookie and click value
 var cookieBank = 0;
 var cookieBankHTML = document.getElementById("cookieBank");
 
@@ -24,6 +26,7 @@ var addToCookieBank = function(cookies){
 
 cookie.addEventListener('click', function() {addToCookieBank(clickVal);} );
 
+// click
 var upgradeClickVal = function(val){
     if (cookieBank - upClickValCost > 0){
 	// take out cost of upgrade
@@ -41,6 +44,14 @@ var upgradeClickVal = function(val){
 upClickValHTML.addEventListener('click', function() { upgradeClickVal(upClickVal);});
 
 // generator
+var buyGenerator = function(genID, cost, addtoCBVal, interval){
+    if (cookieBank - cost > 0){
+	addToCookieBank(-cost);
+	var p = document.getElementById("gen"+genID+"Num");
+	p.innerHTML += 1;
+    }
+};
+
 var gen0 = document.getElementById("gen0");
 var gen0Cost = 100;
 var gen0NumHTML = document.getElementById("gen0Num");
@@ -55,4 +66,5 @@ gen0.addEventListener('click', function() {
 	gen0NumHTML.innerHTML = "You have " + gen0Num + " gen0";
     }
 });
+
 
