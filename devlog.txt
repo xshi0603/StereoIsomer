@@ -32,3 +32,6 @@ added cookie button and click value upgrade.
 jackieW -- 2017-12-26 13:05:45
 added generator and button descriptions
 
+manahalT -- 2017-12-30 12:27:29
+worked on database stuff
+
