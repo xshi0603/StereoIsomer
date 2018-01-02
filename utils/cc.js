@@ -76,36 +76,4 @@ var gen1 = new Generator(1,0, 1100, 8);
 
 gen1button.addEventListener('click', function() { generatorfuntimes(gen1, gen1NumHTML);})
 
-/*
-var gen0 = document.getElementById("gen0");
-var gen0Cost = 100;
-var gen0NumHTML = document.getElementById("gen0Num");
-var gen0Num = 0;
-gen0.addEventListener('click', function() {
-    if (cookieBank - gen0Cost >= 0){
-	addToCookieBank(-gen0Cost);
-	gen0Num += 1;
-	setInterval(function() {
-	    addToCookieBank(10);
-	} ,1000);
-	gen0NumHTML.innerHTML = "You have " + gen0Num + " gen0";
-    }
-});
-
-var gen1 = document.getElementById("gen1");
-var gen1Cost = 10000;
-var gen1NumHTML = document.getElementById("gen1Num");
-var gen1Num = 0;
-gen1.addEventListener('click', function() {
-    console.log("ckick lgen");
-    if (cookieBank - gen1Cost >= 0){
-	addToCookieBank(-gen1Cost);
-	gen1Num += 1;
-	setInterval(function() {
-	    addToCookieBank(1000);
-	} ,1000);
-	gen1NumHTML.innerHTML = "You have " + gen1Num + " gen1";
-    }
-});
-*/
 
