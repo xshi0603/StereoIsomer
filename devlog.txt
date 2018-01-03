@@ -35,3 +35,6 @@ added generator and button descriptions
 manahalT -- 2017-12-30 12:27:29
 worked on database stuff
 
+manahalT -- 2018-01-02 23:20:28
+worked on finishing db tables
+

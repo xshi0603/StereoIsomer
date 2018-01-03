@@ -18,7 +18,11 @@ def tableCreation():
     c = db.cursor()
     user_table = 'CREATE TABLE credentials (id INTEGER, username TEXT, password BLOB);'
     c.execute(user_table)
-    stats_table = 'CREATE TABLE stats (id INTEGER, cookies INTEGER, cps INTEGER, generators BLOB);'
+    achievements_table = 'CREATE TABLE achievements (id INTEGER, achievement TEXT)'
+    c.execute(achievements_table)
+    upgrades_table = 'CREATE TABLE upgrades (id INTEGER, upgrade TEXT)'
+    c.execute(upgrades_table)
+    stats_table = 'CREATE TABLE stats (id INTEGER, cookies INTEGER, cps INTEGER, generators TEXT);'
     c.execute(stats_table)
     db.commit()
     db.close()
@@ -42,6 +46,8 @@ def addUser(new_username, new_password):
         new_userID = x[0]
     hash_pass = hash_password(new_password)
     c.execute('INSERT INTO credentials VALUES (?,?,?)',[new_userID, new_username, hash_pass])
+    c.execute('INSERT INTO achievements VALUES (?,?)',[new_userID, ''])
+    c.execute('INSERT INTO upgrades VALUES (?,?)',[new_userID,''])
     c.execute('INSERT INTO stats VALUES (?,?,?,?)',[new_userID, 0, 0, 0])
     db.commit()
     db.close()
@@ -136,6 +142,16 @@ def addCookies(user, c_count):
     db.commit()
     db.close()
 
+def setCookies(user, c_count):
+    f="data/info.db"
+    db = sqlite3.connect(f) #open if f exists, otherwise create
+    c = db.cursor()         #facilitates db ops
+    user_id = getUserID(user)
+    cookies = str(c_count)
+    c.execute("UPDATE stats SET cookies = " + cookies + " WHERE id = " + user_id)
+    db.commit()
+    db.close()
+
 def setCPS(user, new_cps):
     f="data/info.db"
     db = sqlite3.connect(f) #open if f exists, otherwise create
@@ -146,6 +162,55 @@ def setCPS(user, new_cps):
     db.commit()
     db.close()
 
+#=========================================================================
+#Adding achievements, upgrades, generators
+def addAchievement(user, ach):
+    f="data/info.db"
+    db = sqlite3.connect(f) #open if f exists, otherwise create
+    c = db.cursor()         #facilitates db ops
+    user_id = getUserID(user)
+    stuff = c.execute('SELECT achievement FROM achievements WHERE id= ' + user_id + ';')
+    old_content = stuff.fetchone()
+    print 'OLD_CONTENT...'
+    print old_content
+    new_content = old_content[0] + ach + "; "
+    print 'NEW_CONTENT...'
+    print new_content
+    c.execute("UPDATE achievements SET achievement = '" + new_content + "' WHERE id = " + user_id + ";")
+    #c.execute(command)
+    db.commit()
+    db.close()
+
+def addUpgrade(user, new_upgrade):
+    f="data/info.db"
+    db = sqlite3.connect(f) #open if f exists, otherwise create
+    c = db.cursor()         #facilitates db ops
+    user_id = getUserID(user)
+    stuff = c.execute('SELECT upgrade FROM upgrades WHERE id= ' + user_id + ';')
+    old_content = stuff.fetchone()
+    #print 'OLD_CONTENT...'
+    #print old_content
+    new_content = old_content[0] + new_upgrade + '; '
+    c.execute("UPDATE upgrades SET upgrade = '" + new_content + "' WHERE id = " + user_id)
+    db.commit()
+    db.close()
+
+def addGenerator(user, new_gen):
+    f="data/info.db"
+    db = sqlite3.connect(f) #open if f exists, otherwise create
+    c = db.cursor()         #facilitates db ops
+    user_id = getUserID(user)
+    stuff = c.execute('SELECT generators FROM stats WHERE id= ' + user_id + ';')
+    old_content = stuff.fetchone()
+    #print 'OLD_CONTENT...'
+    #print old_content
+    new_content = old_content[0] + new_gen + '; '
+    c.execute("UPDATE stats SET generators = '" + new_content + "' WHERE id = " + user_id)
+    db.commit()
+    db.close()
+
+
+    
 #TESTING
 
 if __name__ == '__main__':
@@ -175,9 +240,27 @@ if __name__ == '__main__':
     addCookies('manahal', 100)
     print 'new cookie count manahal'
     print getCookies('manahal')
+    setCookies('manahal', 500)
+    print getCookies('manahal')
 
     print 'original cps manahal'
     print getCPS('manahal')
     setCPS('manahal', 50)
     print 'new cps manahal'
     print getCPS('manahal')
+
+    addAchievement('manahal','ach1')
+    addAchievement('manahal','ach2')
+    addAchievement('manahal','ach3')
+    addAchievement('manahal','ach4')
+
+    addUpgrade('manahal','upgrade1')
+    addUpgrade('manahal','upgrade2')
+    addUpgrade('manahal','upgrade3')
+    addUpgrade('manahal','upgrade4')
+
+    addGenerator('manahal','gen1')
+    addGenerator('manahal','gen2')
+    addGenerator('manahal','gen3')
+    addGenerator('manahal','gen4')
+    
