@@ -38,3 +38,6 @@ worked on database stuff
 manahalT -- 2018-01-02 23:20:28
 worked on finishing db tables
 
+manahalT -- 2018-01-03 13:59:37
+worked on database upgrades, achivements, and generators
+

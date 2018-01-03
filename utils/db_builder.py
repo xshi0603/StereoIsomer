@@ -123,6 +123,45 @@ def getCPS(username):
     db.close()
     return retVal
 
+def getAchievements(user):
+    f="data/info.db"
+    db = sqlite3.connect(f) #open if f exists, otherwise create
+    c = db.cursor()         #facilitates db ops
+    user_id = getUserID(user)
+    achs = ((c.execute('SELECT achievement FROM achievements WHERE id = ' + str(user_id) + ';')).fetchall())[0][0]
+    stuff = achs[0:len(achs)-1]
+    #print stuff
+    ach_list = (stuff.split(';'))
+    #print "Final list.."
+    #print ach_list
+    return ach_list
+
+def getUpgrades(user):
+    f="data/info.db"
+    db = sqlite3.connect(f) #open if f exists, otherwise create
+    c = db.cursor()         #facilitates db ops
+    user_id = getUserID(user)
+    upgrades = ((c.execute('SELECT upgrade FROM upgrades WHERE id = ' + str(user_id) + ';')).fetchall())[0][0]
+    stuff = upgrades[0:len(upgrades)-1]
+    #print stuff
+    up_list = (stuff.split(';'))
+    #print "Final list.."
+    #print up_list
+    return up_list
+
+def getGenerators(user):
+    f="data/info.db"
+    db = sqlite3.connect(f) #open if f exists, otherwise create
+    c = db.cursor()         #facilitates db ops
+    user_id = getUserID(user)
+    gens = ((c.execute('SELECT generators FROM stats WHERE id = ' + str(user_id) + ';')).fetchall())[0][0]
+    stuff = gens[0:len(gens)-1]
+    #print stuff
+    gen_list = (stuff.split(';'))
+    #print "Final list.."
+    #print gen_list
+    return gen_list
+    
 
 #================================================================
 
@@ -173,7 +212,7 @@ def addAchievement(user, ach):
     old_content = stuff.fetchone()
     print 'OLD_CONTENT...'
     print old_content
-    new_content = old_content[0] + ach + "; "
+    new_content = old_content[0] + ach + ";"
     print 'NEW_CONTENT...'
     print new_content
     c.execute("UPDATE achievements SET achievement = '" + new_content + "' WHERE id = " + user_id + ";")
@@ -190,7 +229,7 @@ def addUpgrade(user, new_upgrade):
     old_content = stuff.fetchone()
     #print 'OLD_CONTENT...'
     #print old_content
-    new_content = old_content[0] + new_upgrade + '; '
+    new_content = old_content[0] + new_upgrade + ';'
     c.execute("UPDATE upgrades SET upgrade = '" + new_content + "' WHERE id = " + user_id)
     db.commit()
     db.close()
@@ -204,7 +243,7 @@ def addGenerator(user, new_gen):
     old_content = stuff.fetchone()
     #print 'OLD_CONTENT...'
     #print old_content
-    new_content = old_content[0] + new_gen + '; '
+    new_content = old_content[0] + new_gen + ';'
     c.execute("UPDATE stats SET generators = '" + new_content + "' WHERE id = " + user_id)
     db.commit()
     db.close()
@@ -263,4 +302,7 @@ if __name__ == '__main__':
     addGenerator('manahal','gen2')
     addGenerator('manahal','gen3')
     addGenerator('manahal','gen4')
-    
+
+    print getAchievements('manahal')
+    print getUpgrades('manahal')
+    print getGenerators('manahal')
