@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, session, redirect, url_for, flash
-import os, csv, sqlite3, hashlib, uuid
+import os, csv, sqlite3, hashlib, uuid, requests
 #from datetime import datetime
 #from utils import api_library, dbLibrary
 #import json
@@ -136,6 +136,28 @@ def logout():
     if 'username' in session:
         session.pop('username')
         flash("Logged out.")
+    return redirect(url_for("root"))
+
+#--------------------------------------------------------
+
+#---------------------WEATHER----------------------------
+
+def getWeather():
+    key = open('wunderground_api_key.txt', 'rb').read()
+    #print key
+    #data = newJSON
+    #response = requests.get('http://api.wunderground.com/api/ab6209433554e030/conditions/q/NY/New_York_City.json')   
+    url = 'http://api.wunderground.com/api/' + key + '/conditions/q/CA/San_Francisco.json'                                                            
+    #print(url)
+    response = requests.get(url)
+    response = response.json()
+    temperature = response['current_observation']['temp_f']
+    #print temperature
+    return temperature
+
+@cookie_app.route('/weather', methods=['GET'])
+def weather():
+    print getWeather()
     return redirect(url_for("root"))
 
 #--------------------------------------------------------
