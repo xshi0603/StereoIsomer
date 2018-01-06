@@ -44,3 +44,6 @@ worked on database upgrades, achivements, and generators
 xingtaoShi -- 2018-01-05 13:39:35
 weather api stuff
 
+xingtaoShi -- 2018-01-06 16:03:23
+made flask app modifications and some files
+

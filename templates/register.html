@@ -40,32 +40,24 @@
 
   <body>
     
-    <br><br>
-    
-    <div class="jumbotron ">
-      <h1 class="display-3">Welcome</h1>
-    </div>
-    
-    <div class="row">
-      <div class="col">
-
-	<div class="box1">
-	  If you already have an account, sign in here!!!<br><br>
-	  <button type="button" class="btn btn-a btn-lg btn-block">
-	    <a href="login">Login</a>
-	  </button>
-	</div>
-
+    <center>
+      <div class="container-1">
+	Hello, please enter a username and password to register. <br><br>
+	<form class="signin" method = "POST" action ="/accountSubmit">
+          Username:
+          <input type="text" name="newUsername" required> <br><br>
+          Password:
+          <input type = "password" name = "newPassword" required>  <br><br>
+          <input type="submit" value="Register" class = "button2">
+	</form>
+	
+	<form method = "GET" action = "/login">
+	  Already have an account?
+	  <input  type="submit" value = "Login" class = "button1">
+	</form>
+	<a href = "/"> Back </a>
       </div>
-      <div class="col">
-	<div class="box2">
-	  If you don't have an account, you can create one.
-	  <br><br>
-	  <button type="button" class="btn btn-a btn-lg btn-block">
-	    <a href="account">Register</a>
-	  </button>
-	</div>
-      </div>
-      
+    </center>
+    
   </body>
 </html>
