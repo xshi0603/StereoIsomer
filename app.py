@@ -129,6 +129,19 @@ def accountSubmit():
 
 #-----------------------------------------------------------
 
+#---------------------GAME-------------------------------
+
+@cookie_app.route('/game', methods=['GET'])
+def game():
+    #if 'username' not in session:
+    #    flash("Session timed out")
+    #    return redirect(url_for('login'))
+    #current_user = session["username"]
+
+    return render_template("game.html")
+
+#--------------------------------------------------------
+
 #---------------------LOGGING OUT------------------------
 
 @cookie_app.route('/logout', methods=['GET'])
