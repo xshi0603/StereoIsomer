@@ -24,9 +24,11 @@ var addToCookieBank = function(cookies){
     updateCB(cookieBank);
 };
 
-cookie.addEventListener('click', function() {addToCookieBank(clickVal);} );
+cookie.addEventListener('click', function() {
+    addToCookieBank(clickVal);
+});
 
-// click
+// click upgrade
 var upgradeClickVal = function(val){
     if (cookieBank - upClickValCost > 0){
 	// take out cost of upgrade
@@ -44,7 +46,6 @@ var upgradeClickVal = function(val){
 upClickValHTML.addEventListener('click', function() { upgradeClickVal(upClickVal);});
 
 // generator
-
 var generatorfuntimes = function(gen, html){
     if (cookieBank-gen.cost >= 0){
 	addToCookieBank(-gen.cost);
