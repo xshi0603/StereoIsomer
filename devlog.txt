@@ -52,3 +52,6 @@ made flask app modifications and some files
 xingtaoShi -- 2018-01-08 13:50:10
 made flask app login/register
 
+jackieW -- 2018-01-08 13:51:23
+animated cookie
+
