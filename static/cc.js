@@ -81,6 +81,6 @@ var gen1button = document.getElementById("gen1");
 var gen1HTML = document.getElementById("gen1p");
 var gen1 = new Generator(1,0, 1100, 8);
 
-gen1button.addEventListener('click', function() { generatorfuntimes(gen1, gen1NumHTML);})
+gen1button.addEventListener('click', function() { generatorfuntimes(gen1, gen1HTML);})
 
 
