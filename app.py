@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, session, redirect, url_for, flash
 import os, csv, sqlite3, hashlib, uuid, requests
+from utils import  db_builder
 #from datetime import datetime
 #from utils import api_library, dbLibrary
 #import json
@@ -37,12 +38,28 @@ def login():
 
 @cookie_app.route("/authenticate",methods = ['POST','GET']) #old stuff
 def authenticate():
+    '''
     dbTunes = dbLibrary.openDb("data/tunes.db")
     cursor = dbLibrary.createCursor(dbTunes)
+    '''
+
     input_username = request.form['username']
     input_password = request.form['password']
 
-    if input_username=='' or input_password=='' :
+    status = db_builder.authenticate(input_username, input_password)
+    
+
+    if (status == 0):
+        flash("user dne")
+        return redirect(url_for('login')) #user dne
+    elif (status == 1): #sucessful
+        return redirect(url_for('game'))
+    
+    flash("password wrong")
+    return redirect(url_for('login'))
+
+'''
+if input_username=='' or input_password=='' :
         flash("Please Fill In All Fields")
         return redirect(url_for('login'))
 
@@ -67,13 +84,14 @@ def authenticate():
     elif check_password(hashed_pass, input_password):
         flash("Login Successful")
         session["username"] = input_username;#in order to keep track of user
-        return redirect(url_for('diary'))
+
 
     else:
         flash("Invalid Login Information")
         return redirect(url_for('login'))
+'''
     
-
+    
 #-------------------------------------------------------------------
 
 #---------------CREATING AN ACCOUNT----------------------------------
@@ -86,12 +104,17 @@ def account():
 
 @cookie_app.route("/accountSubmit", methods = ['POST' , 'GET'])
 def accountSubmit():
+    '''
     dbTunes = dbLibrary.openDb("data/tunes.db")
     cursor = dbLibrary.createCursor(dbTunes)
+    '''
     #print request.form
     username = request.form['newUsername']
     password = request.form['newPassword']
-
+    print(username)
+    print(password)
+    db_builder.addUser(username, password)
+    '''
     if username == '' or password == '':
         dbLibrary.closeFile(dbTunes)
         flash("Please Fill In All Fields")
@@ -125,8 +148,10 @@ def accountSubmit():
         flash("Invalid: Username taken")
         dbLibrary.commit(dbTunes)
         dbLibrary.closeFile(dbTunes)
-        return redirect(url_for('account'))
 
+    '''
+    return redirect(url_for('login'))
+    
 #-----------------------------------------------------------
 
 #---------------------GAME-------------------------------

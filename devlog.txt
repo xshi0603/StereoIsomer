@@ -49,3 +49,6 @@ scaled generator costs
 
 xingtaoShi -- 2018-01-06 16:03:23
 made flask app modifications and some files
+xingtaoShi -- 2018-01-08 13:50:10
+made flask app login/register
+
