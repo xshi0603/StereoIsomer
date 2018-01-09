@@ -35,11 +35,26 @@ def hash_password(password):
     key = uuid.uuid4().hex
     return hashlib.sha256(key.encode() + password.encode()).hexdigest()+':' + key
 
+def checkUsername(user):
+    f="data/info.db"
+    db = sqlite3.connect(f) #open if f exists, otherwise create
+    c = db.cursor()         #facilitates db ops
+    usernames = c.execute('SELECT username FROM credentials;')
+    for x in usernames:
+        print x[0]
+        if (x[0] == user):
+            return False
+        else:
+            return True
+
 #add a user
 def addUser(new_username, new_password):
     f="data/info.db"
     db = sqlite3.connect(f) #open if f exists, otherwise create
     c = db.cursor()         #facilitates db ops
+    if (checkUsername(new_username) == False):
+        print 'username already used'
+        return False
     userCount = c.execute('SELECT COUNT(*) FROM credentials;')
     new_userID = 0
     for x in userCount:
@@ -48,9 +63,10 @@ def addUser(new_username, new_password):
     c.execute('INSERT INTO credentials VALUES (?,?,?)',[new_userID, new_username, hash_pass])
     c.execute('INSERT INTO achievements VALUES (?,?)',[new_userID, ''])
     c.execute('INSERT INTO upgrades VALUES (?,?)',[new_userID,''])
-    c.execute('INSERT INTO stats VALUES (?,?,?,?)',[new_userID, 0, 0, 0])
+    c.execute('INSERT INTO stats VALUES (?,?,?,?)',[new_userID, 0, 0, ''])
     db.commit()
     db.close()
+    return True
 
 #============================================================
 
@@ -306,3 +322,6 @@ if __name__ == '__main__':
     print getAchievements('manahal')
     print getUpgrades('manahal')
     print getGenerators('manahal')
+
+    #checkUsername('manahal')
+    addUser('manahal','hvkdjfg')
