@@ -1,3 +1,7 @@
+body{
+    background-image: url("../static/images.jpg") no-repeat center center fixed;
+}
+
 #cookie:active{
     -webkit-transform: scale(0.9);
     -ms-transform: scale(0.9);
