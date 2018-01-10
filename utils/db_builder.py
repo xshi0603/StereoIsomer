@@ -105,6 +105,14 @@ def getPass(username):
     db.close()
     return retVal
 
+def getUsername(uID):
+    f="data/info.db"
+    db = sqlite3.connect(f) #open if f exists, otherwise create
+    c = db.cursor()         #facilitates db ops
+    command = "SELECT username FROM credentials WHERE id = " + str(uID) + ";"
+    info = c.execute(command)
+    retVal = c.fetchall()[0][0]
+    return retVal
 
 def getUserID(username):
     f = "data/info.db"
@@ -264,6 +272,26 @@ def addGenerator(user, new_gen):
     db.commit()
     db.close()
 
+#=========================================================================
+
+#returns a dictionary in which key value is username and key value is list
+#list is as follows: [<userID>,<cookieCount>,<rank>]
+def leaderboard():
+    f="data/info.db"
+    db = sqlite3.connect(f) #open if f exists, otherwise create
+    c = db.cursor()         #facilitates db ops
+    info = c.execute('SELECT * FROM stats;')
+    d = {}
+    for x in info:
+        #print x[0]
+        #print x[1]
+        username = getUsername(x[0])
+        cookies = getCookies(username)
+        d[username] = [x[0], cookies]
+    print d
+    db.commit()
+    db.close()
+
 
     
 #TESTING
@@ -325,3 +353,6 @@ if __name__ == '__main__':
 
     #checkUsername('manahal')
     addUser('manahal','hvkdjfg')
+    print getUsername(0)
+    print getUsername(1)
+    leaderboard()
