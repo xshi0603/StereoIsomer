@@ -97,8 +97,8 @@ def game():
     #current_user = session["username"]
 
 
-    #return render_template("game.html", temp = getWeather())
-    return render_template("game.html")
+    return render_template("game.html", temp = getWeather())
+    #return render_template("game.html")
 
 #--------------------------------------------------------
 
