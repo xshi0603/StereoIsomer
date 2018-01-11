@@ -1,4 +1,3 @@
-
 // cookie and click value
 var cookieBank = 0;
 var cookieBankHTML = document.getElementById("cookieBank");
@@ -30,7 +29,7 @@ cookie.addEventListener('click', function() {
 
 // click upgrade
 var upgradeClickVal = function(val){
-    if (cookieBank - upClickValCost > 0){
+    if (cookieBank - upClickValCost >= 0){
 	// take out cost of upgrade
 	cookieBank -= upClickValCost;
 	updateCB(cookieBank);
@@ -71,6 +70,7 @@ class Generator {
     }
 
 }
+
 var gen0button = document.getElementById("gen0");
 var gen0HTML = document.getElementById("gen0p");
 var gen0 = new Generator(0,0, 100, 1);
@@ -83,11 +83,19 @@ var gen1 = new Generator(1,0, 1100, 8);
 
 gen1button.addEventListener('click', function() { generatorfuntimes(gen1, gen1HTML);});
 
+
+//--------SAVING----------
+
 var saving = function(e) {    
     
+    var value2 = "hello";
+    
     var values = {"username" : "insertuser",
-		  "cookies" : "insertcookies",
+		  "cookies" : cookieBank,
 		  "cps" : "insertcps",
+		  "gen0" : gen0.num,
+		  "gen1" : gen1.num,
+		  "clickVal" : clickVal,
 		  //"generators" : {"gen0" : 1,
 		  //		  "gen1" : 2 }, 
     }
@@ -96,8 +104,10 @@ var saving = function(e) {
 
     $.ajax({
 	    url:'/save',
-		type: 'GET',
-		data: {'text': values},
+		type: 'POST',
+		//processData : "false",
+		//dataType: "json",
+		data: $.param(values),
 		sucess: function (d) {
 		console.log(d);
 		//console.log(JSON.parse(d));

@@ -96,7 +96,9 @@ def game():
     #    return redirect(url_for('login'))
     #current_user = session["username"]
 
-    return render_template("game.html", temp = getWeather())
+
+    #return render_template("game.html", temp = getWeather())
+    return render_template("game.html")
 
 #--------------------------------------------------------
 
@@ -104,14 +106,25 @@ def game():
 
 @cookie_app.route('/save', methods=['GET', 'POST'])
 def save():
-    data = request.args.get("text")
-    print "data is: \n"
-    print data
-    response = {'uc' : data }
-    print "after dumping: \n"
-    response = json.dumps(response)
-    print response
-    return response
+    #data = request.args.get("text")
+    username = request.form["username"]
+    cookies = request.form["cookies"]
+    gen0 = request.form["gen0"]
+    gen1 = request.form["gen1"]
+    print "username is:"
+    print username
+    print "cookies is:"
+    print cookies
+    print "gen0 is:"
+    print gen0
+    print "gen1 is:"
+    print gen1
+    #response = {'uc' : data }
+    #print "after dumping: \n"
+    #response = json.dumps(response)
+    #print response
+    flash("haelo")
+    return username
 
 '''    
     return render_templater("game.html", temp = getWeather())
