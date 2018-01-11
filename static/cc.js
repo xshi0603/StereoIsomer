@@ -75,12 +75,38 @@ var gen0button = document.getElementById("gen0");
 var gen0HTML = document.getElementById("gen0p");
 var gen0 = new Generator(0,0, 100, 1);
 
-gen0button.addEventListener('click', function() { generatorfuntimes(gen0, gen0HTML);})
+gen0button.addEventListener('click', function() { generatorfuntimes(gen0, gen0HTML);});
 
 var gen1button = document.getElementById("gen1");
 var gen1HTML = document.getElementById("gen1p");
 var gen1 = new Generator(1,0, 1100, 8);
 
-gen1button.addEventListener('click', function() { generatorfuntimes(gen1, gen1HTML);})
+gen1button.addEventListener('click', function() { generatorfuntimes(gen1, gen1HTML);});
 
+var saving = function(e) {    
+    
+    var values = {"username" : "insertuser",
+		  "cookies" : "insertcookies",
+		  "cps" : "insertcps",
+		  //"generators" : {"gen0" : 1,
+		  //		  "gen1" : 2 }, 
+    }
+    
+    console.log(values);
 
+    $.ajax({
+	    url:'/save',
+		type: 'GET',
+		data: {'text': values},
+		sucess: function (d) {
+		console.log(d);
+		//console.log(JSON.parse(d));
+		//d = JSON.parse(d);
+		//document.getElementById('h2').innerHTML = d['uc'];
+	    }
+	});
+    console.log('goodbye');
+};
+
+document.getElementById("save").addEventListener( 'click', saving );
+//savebutton.addEventListener('click', function() { saving();});

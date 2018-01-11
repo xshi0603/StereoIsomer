@@ -1,6 +1,7 @@
-from flask import Flask, render_template, request, session, redirect, url_for, flash
-import os, csv, sqlite3, hashlib, uuid, requests
+from flask import Flask, render_template, request, session, redirect, url_for, flash, jsonify
 from utils import  db_builder
+import os, csv, sqlite3, hashlib, uuid, requests, json
+
 
 #----------------------ENCRYPTION---------------------------
 
@@ -96,6 +97,37 @@ def game():
     #current_user = session["username"]
 
     return render_template("game.html", temp = getWeather())
+
+#--------------------------------------------------------
+
+#---------------------SAVE-------------------------------
+
+@cookie_app.route('/save', methods=['GET', 'POST'])
+def save():
+    data = request.args.get("text")
+    print "data is: \n"
+    print data
+    response = {'uc' : data }
+    print "after dumping: \n"
+    response = json.dumps(response)
+    print response
+    return response
+
+'''    
+    return render_templater("game.html", temp = getWeather())
+
+@app.route("/")
+    def index():
+        return render_template("index.html")
+    
+@app.route("/foo")
+def upcase():
+    data = request.args.get("text")
+    print data
+    response = {'uc' : data.upper() }
+    return json.dumps(response)
+'''
+
 
 #--------------------------------------------------------
 
