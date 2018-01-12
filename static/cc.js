@@ -18,7 +18,7 @@ var updateCB = function (cookieBankValue){
 }
 
 var addToCookieBank = function(cookies){
-    cookieBank += cookies;
+    cookieBank += Math.ceil(cookies);
     console.log("Cookie bank: " + cookieBank);
     updateCB(cookieBank);
 };
@@ -45,6 +45,27 @@ var upgradeClickVal = function(val){
 upClickValHTML.addEventListener('click', function() { upgradeClickVal(upClickVal);});
 
 // generator
+class Generator {
+    constructor(id, num, cost, cps, upVal){
+	this.id = id;
+	this.num = num;
+	this.cost = cost;
+	this.cps = cps;
+	this.upVal = upVal;
+    }
+    updateCost(){
+	this.cost *= 1.1;
+    }
+    upgradeCPS(mult){
+	this.cps *= mult;
+	this.upVal = Math.floor(this.upVal*1.1);
+    }
+}
+
+var updateHTML = function(gen, html){
+    html.innerHTML = "Cost: " + Math.floor(gen.cost) + " --- Generates " + gen.cps + " cps. You have " + gen.num + " gen" + gen.id;
+};
+
 var generatorfuntimes = function(gen, html){
     if (cookieBank-gen.cost >= 0){
 	addToCookieBank(-gen.cost);
@@ -53,33 +74,29 @@ var generatorfuntimes = function(gen, html){
 	setInterval(function(){
 	    addToCookieBank(gen.cps);
 	}, 1000);
-	html.innerHTML = "Cost: " + Math.floor(gen.cost) + " --- Generates " + gen.cps + " cps. You have " + gen.num + " gen" + gen.id;
+	updateHTML(gen, html);
     }
-
-}
-
-class Generator {
-    constructor(id, num, cost, cps){
-	this.id = id;
-	this.num = num;
-	this.cost = cost;
-	this.cps = cps;
-    }
-    updateCost(){
-	this.cost *= 1.1;
-    }
-
 }
 
 var gen0button = document.getElementById("gen0");
 var gen0HTML = document.getElementById("gen0p");
-var gen0 = new Generator(0,0, 100, 1);
+var gen0 = new Generator(0,0, 100, 1, 100);
+var up0 = document.getElementById("up0");
 
 gen0button.addEventListener('click', function() { generatorfuntimes(gen0, gen0HTML);});
-
+up0.addEventListener('click', function(){
+    console.log("clicked up");
+    if(cookieBank-gen0.upVal>=0){
+	addToCookieBank(-gen0.upVal);
+	gen0.upgradeCPS(2);
+	updateHTML(gen0, gen0HTML);
+	console.log("upVal: " + gen0.upVal);
+    }
+});
+					  
 var gen1button = document.getElementById("gen1");
 var gen1HTML = document.getElementById("gen1p");
-var gen1 = new Generator(1,0, 1100, 8);
+var gen1 = new Generator(1,0, 1100, 8, 1500);
 
 gen1button.addEventListener('click', function() { generatorfuntimes(gen1, gen1HTML);});
 
