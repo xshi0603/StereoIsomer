@@ -73,3 +73,6 @@ stuff with saving not quite working yet
 xingtaoShi -- 2018-01-11 11:01:39
 saving kinda wokrs
 
+jackieW -- 2018-01-13 17:03:59
+added tooltips and gen upgrades
+
