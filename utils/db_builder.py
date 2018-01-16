@@ -22,7 +22,9 @@ def tableCreation():
     c.execute(achievements_table)
     upgrades_table = 'CREATE TABLE upgrades (id INTEGER, upgrade TEXT)'
     c.execute(upgrades_table)
-    stats_table = 'CREATE TABLE stats (id INTEGER, cookies INTEGER, cps INTEGER, generators TEXT);'
+    generators_table = 'CREATE TABLE generators (id INTEGER, generator1 INTEGER, generator2 INTEGER);'
+    c.execute(generators_table)
+    stats_table = 'CREATE TABLE stats (id INTEGER, cookies INTEGER, cps INTEGER);'
     c.execute(stats_table)
     db.commit()
     db.close()
@@ -63,7 +65,8 @@ def addUser(new_username, new_password):
     c.execute('INSERT INTO credentials VALUES (?,?,?)',[new_userID, new_username, hash_pass])
     c.execute('INSERT INTO achievements VALUES (?,?)',[new_userID, ''])
     c.execute('INSERT INTO upgrades VALUES (?,?)',[new_userID,''])
-    c.execute('INSERT INTO stats VALUES (?,?,?,?)',[new_userID, 0, 0, ''])
+    c.execute('INSERT INTO generators VALUES (?,?,?)',[new_userID, 0, 0])
+    c.execute('INSERT INTO stats VALUES (?,?,?)',[new_userID, 0, 0])
     db.commit()
     db.close()
     return True
@@ -173,6 +176,23 @@ def getUpgrades(user):
     #print up_list
     return up_list
 
+def getGen1(user):
+    f="data/info.db"
+    db = sqlite3.connect(f) #open if f exists, otherwise create
+    c = db.cursor()         #facilitates db ops
+    user_id = getUserID(user)
+    gen_num = ((c.execute('SELECT generator1 FROM generators WHERE id = ' + str(user_id) + ';')).fetchall())[0][0]
+    return gen_num
+
+def getGen2(user):
+    f="data/info.db"
+    db = sqlite3.connect(f) #open if f exists, otherwise create
+    c = db.cursor()         #facilitates db ops
+    user_id = getUserID(user)
+    gen_num = ((c.execute('SELECT generator2 FROM generators WHERE id = ' + str(user_id) + ';')).fetchall())[0][0]
+    return gen_num
+
+'''
 def getGenerators(user):
     f="data/info.db"
     db = sqlite3.connect(f) #open if f exists, otherwise create
@@ -185,6 +205,7 @@ def getGenerators(user):
     #print "Final list.."
     #print gen_list
     return gen_list
+'''
     
 
 #================================================================
@@ -225,6 +246,26 @@ def setCPS(user, new_cps):
     db.commit()
     db.close()
 
+def setGen1(user, num):
+    f="data/info.db"
+    db = sqlite3.connect(f) #open if f exists, otherwise create
+    c = db.cursor()         #facilitates db ops
+    user_id = getUserID(user)
+    gen_num = str(num)
+    c.execute("UPDATE generators SET generator1 = " + gen_num + " WHERE id = " + user_id)
+    db.commit()
+    db.close()
+
+def setGen2(user, num):
+    f="data/info.db"
+    db = sqlite3.connect(f) #open if f exists, otherwise create
+    c = db.cursor()         #facilitates db ops
+    user_id = getUserID(user)
+    gen_num = str(num)
+    c.execute("UPDATE generators SET generator2 = " + gen_num + " WHERE id = " + user_id)
+    db.commit()
+    db.close()
+
 #=========================================================================
 #Adding achievements, upgrades, generators
 def addAchievement(user, ach):
@@ -258,6 +299,7 @@ def addUpgrade(user, new_upgrade):
     db.commit()
     db.close()
 
+'''
 def addGenerator(user, new_gen):
     f="data/info.db"
     db = sqlite3.connect(f) #open if f exists, otherwise create
@@ -271,11 +313,13 @@ def addGenerator(user, new_gen):
     c.execute("UPDATE stats SET generators = '" + new_content + "' WHERE id = " + user_id)
     db.commit()
     db.close()
+'''
 
 #=========================================================================
 
 #returns a dictionary in which key value is username and key value is list
 #list is as follows: [<userID>,<cookieCount>,<rank>]
+'''
 def leaderboard():
     f="data/info.db"
     db = sqlite3.connect(f) #open if f exists, otherwise create
@@ -288,10 +332,17 @@ def leaderboard():
         username = getUsername(x[0])
         cookies = getCookies(username)
         d[username] = [x[0], cookies]
+    
+    sort = sorted(d.iteritems(), key=lambda value:value[1][1])
+    print sort
     print d
+    sort_dict = {}
+    for x in sort:
+        sort_dict[[x][0]] = 
+    return sort
     db.commit()
     db.close()
-
+'''
 
     
 #TESTING
@@ -303,6 +354,8 @@ if __name__ == '__main__':
     #add users
     addUser('manahal','tabassum')
     addUser('bob', '123')
+    addUser('joe', '123')
+    addUser('hamlet','123')
 
     print getUserID('manahal')
     print getUserID('bob')
@@ -324,6 +377,8 @@ if __name__ == '__main__':
     print 'new cookie count manahal'
     print getCookies('manahal')
     setCookies('manahal', 500)
+    setCookies('bob', 700)
+    setCookies('hamlet', 1000)
     print getCookies('manahal')
 
     print 'original cps manahal'
@@ -342,17 +397,21 @@ if __name__ == '__main__':
     addUpgrade('manahal','upgrade3')
     addUpgrade('manahal','upgrade4')
 
-    addGenerator('manahal','gen1')
-    addGenerator('manahal','gen2')
-    addGenerator('manahal','gen3')
-    addGenerator('manahal','gen4')
+    #addGenerator('manahal','gen1')
+    #addGenerator('manahal','gen2')
+    #addGenerator('manahal','gen3')
+    #addGenerator('manahal','gen4')
 
     print getAchievements('manahal')
     print getUpgrades('manahal')
-    print getGenerators('manahal')
+    #print getGenerators('manahal')
 
     #checkUsername('manahal')
     addUser('manahal','hvkdjfg')
     print getUsername(0)
     print getUsername(1)
-    leaderboard()
+    #leaderboard()
+
+    print getGen1('manahal')
+    setGen1('manahal', 10)
+    print getGen1('manahal')

@@ -76,3 +76,6 @@ saving kinda wokrs
 jackieW -- 2018-01-13 17:03:59
 added tooltips and gen upgrades
 
+manahalT -- 2018-01-16 13:48:26
+added generators to database
+
