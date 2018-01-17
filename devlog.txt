@@ -79,3 +79,6 @@ added tooltips and gen upgrades
 manahalT -- 2018-01-16 13:48:26
 added generators to database
 
+jackieW -- 2018-01-17 13:37:32
+added generator
+
