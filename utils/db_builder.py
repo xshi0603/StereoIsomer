@@ -20,8 +20,8 @@ def tableCreation():
     c.execute(user_table)
     achievements_table = 'CREATE TABLE achievements (id INTEGER, achievement TEXT)'
     c.execute(achievements_table)
-    #upgrades_table = 'CREATE TABLE upgrades (id INTEGER, upgrade TEXT)'
-    #c.execute(upgrades_table)
+    upgrades_table = 'CREATE TABLE upgrades (id INTEGER, upgrade1 INTEGER, upgrade2 INTEGER, upgrade3 INTEGER)'
+    c.execute(upgrades_table)
     generators_table = 'CREATE TABLE generators (id INTEGER, generator1 INTEGER, generator2 INTEGER, generator3 INTEGER);'
     c.execute(generators_table)
     stats_table = 'CREATE TABLE stats (id INTEGER, cookies INTEGER, cps INTEGER);'
@@ -64,7 +64,7 @@ def addUser(new_username, new_password):
     hash_pass = hash_password(new_password)
     c.execute('INSERT INTO credentials VALUES (?,?,?)',[new_userID, new_username, hash_pass])
     c.execute('INSERT INTO achievements VALUES (?,?)',[new_userID, ''])
-    #c.execute('INSERT INTO upgrades VALUES (?,?)',[new_userID,''])
+    c.execute('INSERT INTO upgrades VALUES (?,?,?,?)',[new_userID, 0, 0, 0])
     c.execute('INSERT INTO generators VALUES (?,?,?,?)',[new_userID, 0, 0, 0])
     c.execute('INSERT INTO stats VALUES (?,?,?)',[new_userID, 0, 0])
     db.commit()
@@ -206,6 +206,33 @@ def getGen3(user):
     db.close()
     return gen_num
 
+def getUpgrade1(user):
+    f="data/info.db"
+    db = sqlite3.connect(f) #open if f exists, otherwise create
+    c = db.cursor()         #facilitates db ops
+    user_id = getUserID(user)
+    upgrade_num = ((c.execute('SELECT upgrade1 FROM upgrades WHERE id = ' + str(user_id) + ';')).fetchall())[0][0]
+    db.close()
+    return upgrade_num
+
+def getUpgrade2(user):
+    f="data/info.db"
+    db = sqlite3.connect(f) #open if f exists, otherwise create
+    c = db.cursor()         #facilitates db ops
+    user_id = getUserID(user)
+    upgrade_num = ((c.execute('SELECT upgrade2 FROM upgrades WHERE id = ' + str(user_id) + ';')).fetchall())[0][0]
+    db.close()
+    return upgrade_num
+
+def getUpgrade3(user):
+    f="data/info.db"
+    db = sqlite3.connect(f) #open if f exists, otherwise create
+    c = db.cursor()         #facilitates db ops
+    user_id = getUserID(user)
+    upgrade_num = ((c.execute('SELECT upgrade3 FROM upgrades WHERE id = ' + str(user_id) + ';')).fetchall())[0][0]
+    db.close()
+    return upgrade_num
+
 '''
 def getGenerators(user):
     f="data/info.db"
@@ -287,6 +314,36 @@ def setGen3(user, num):
     user_id = getUserID(user)
     gen_num = str(num)
     c.execute("UPDATE generators SET generator3 = " + gen_num + " WHERE id = " + user_id)
+    db.commit()
+    db.close()
+
+def setUpgrade1(user, num):
+    f="data/info.db"
+    db = sqlite3.connect(f) #open if f exists, otherwise create
+    c = db.cursor()         #facilitates db ops
+    user_id = getUserID(user)
+    upgrade_num = str(num)
+    c.execute("UPDATE upgrades SET upgrade1 = " + upgrade_num + " WHERE id = " + user_id)
+    db.commit()
+    db.close()
+
+def setUpgrade2(user, num):
+    f="data/info.db"
+    db = sqlite3.connect(f) #open if f exists, otherwise create
+    c = db.cursor()         #facilitates db ops
+    user_id = getUserID(user)
+    upgrade_num = str(num)
+    c.execute("UPDATE upgrades SET upgrade2 = " + upgrade_num + " WHERE id = " + user_id)
+    db.commit()
+    db.close()
+
+def setUpgrade3(user, num):
+    f="data/info.db"
+    db = sqlite3.connect(f) #open if f exists, otherwise create
+    c = db.cursor()         #facilitates db ops
+    user_id = getUserID(user)
+    upgrade_num = str(num)
+    c.execute("UPDATE upgrades SET upgrade3 = " + upgrade_num + " WHERE id = " + user_id)
     db.commit()
     db.close()
 
@@ -435,6 +492,17 @@ if __name__ == '__main__':
     print getUsername(0)
     print getUsername(1)
     #leaderboard()
+
+    setUpgrade1('manahal', 5)
+    setUpgrade2('manahal', 10)
+    setUpgrade3('manahal', 15)
+
+    print "upgrade1"
+    print getUpgrade1('manahal')
+    print "upgrade2"
+    print getUpgrade2('manahal')
+    print "upgrade3"
+    print getUpgrade3('manahal')
 
     print getGen1('manahal')
     setGen1('manahal', 10)
