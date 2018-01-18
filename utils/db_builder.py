@@ -416,10 +416,10 @@ if __name__ == '__main__':
     addAchievement('manahal','ach3')
     addAchievement('manahal','ach4')
 
-    addUpgrade('manahal','upgrade1')
-    addUpgrade('manahal','upgrade2')
-    addUpgrade('manahal','upgrade3')
-    addUpgrade('manahal','upgrade4')
+    #addUpgrade('manahal','upgrade1')
+    #addUpgrade('manahal','upgrade2')
+    #addUpgrade('manahal','upgrade3')
+    #addUpgrade('manahal','upgrade4')
 
     #addGenerator('manahal','gen1')
     #addGenerator('manahal','gen2')
@@ -427,7 +427,7 @@ if __name__ == '__main__':
     #addGenerator('manahal','gen4')
 
     print getAchievements('manahal')
-    print getUpgrades('manahal')
+    #print getUpgrades('manahal')
     #print getGenerators('manahal')
 
     #checkUsername('manahal')
