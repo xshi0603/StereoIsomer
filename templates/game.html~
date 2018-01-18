@@ -13,7 +13,7 @@
     <br><br>
 
     <!-- GENERATOR 0 --->
-    <img id="gen0" src="../static/cursor buyable.png" onmousedown = "document.getElementById('gen0').src='../static/cursor\ clicked.png'" onmouseup = "document.getElementById('gen0').src='../static/cursor buyable.png'">
+    <img id="gen0" src="../static/cursor buyable.png"> Generator0 </button>
     <div class="tooltip">
       <button id="up0">Upgrade!</button>
       <span class="tooltiptext"><p id="up0p">Cost: 500 --- Multiplier: 1.5</p></span>
@@ -22,7 +22,7 @@
 
 
     <!-- GENERATOR 1 --->
-    <img id="gen1" src="../static/grandma buyable.png" onmousedown = "document.getElementById('gen1').src='../static/grandma\ clicked.png'" onmouseup = "document.getElementById('gen1').src='../static/grandma buyable.png'">
+    <button id="gen1"> Generator1 </button>
     <div class="tooltip">
       <button id="up1">Upgrade!</button>
       <span class="tooltiptext"><p id="up1p">Cost: 5000 --- Multiplier: 2</p></span>
