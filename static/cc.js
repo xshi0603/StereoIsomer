@@ -64,7 +64,7 @@ class Generator {
 }
 
 var updateHTML = function(gen, genHTML, upHTML){
-    genHTML.innerHTML = "Cost: " + Math.floor(gen.cost) + " --- Generates " + Math.round(gen.cps) + " cps. You have " + gen.num;
+    genHTML.innerHTML = "Cost: " + Math.floor(gen.cost) + " --- Generates " + Math.round(gen.cps) + " cps. You have " + gen.num + " gen" + gen.id;
     upHTML.innerHTML = "Cost: " + gen.upVal + "--- Multiplier: " + gen.upMult;
 };
 
@@ -118,27 +118,24 @@ up1.addEventListener('click', function(){
 
     }
 });
+/*
+var gen1button = document.getElementById("gen1");
+var gen1HTML = document.getElementById("gen1p");
+var gen1 = new Generator(1,0, 1100, 8, 2000);
 
+gen1button.addEventListener('click', function() { generatorfuntimes(gen1, gen1HTML);});
 
-//---- GENERATOR 2 ------
-var gen2button = document.getElementById("gen2");
-var gen2HTML = document.getElementById("gen2p");
-var gen2 = new Generator(0,0, 7000, 20, 10000, 3);
-var up2HTML = document.getElementById("up2p");
-var up2 = document.getElementById("up2");
-
-gen2button.addEventListener('click', function() { generatorfuntimes(gen2, gen2HTML, up2HTML);});
-up2.addEventListener('click', function(){
+var up1 = document.getElementById("up1");
+up1.addEventListener('click', function(){
     console.log("clicked up");
-    if(cookieBank-gen2.upVal>=0){
-	addToCookieBank(-gen2.upVal);
-	gen2.upgradeCPS();
-	updateHTML(gen2, gen2HTML, up2HTML);
-	console.log("upVal: " + gen2.upVal + " cps: " + gen2.cps);
+    if(cookieBank-gen1.upVal>=0){
+	addToCookieBank(-gen1.upVal);
+	gen1.upgradeCPS(2);
+	updateHTML(gen1, gen1HTML);
+	console.log("upVal: " + gen1.upVal);
     }
 });
-
-
+*/
 //--------SAVING----------
 
 var saving = function(e) {    
