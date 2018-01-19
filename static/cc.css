@@ -20,7 +20,7 @@ body{
 .gendiv{
     padding-top: 7em;
     float: right;
-    width: 70%;
+    width: 60%;
 }
 
 /* Tooltip container */
@@ -71,6 +71,14 @@ button:hover{
 #game{
     padding-top: 2em;
     padding-left: 2em;
+}
+
+#cookie{
+    width: 90%;
+}
+
+img{
+    width:50%;
 }
 
 #cookie:active{
