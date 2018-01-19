@@ -74,11 +74,24 @@ var generatorfuntimes = function(gen, html, htmlup){
 	gen.num += 1;
 	gen.updateCost();
 	setInterval(function(){
-	    addToCookieBank(gen.cps);
-	}, 1000);
+		addToCookieBank(gen.cps);
+	    }, 1000);
 	updateHTML(gen, html, htmlup);
     }
-}
+};
+    
+var generatorfuntimes2 = function(gen, html, htmlup){
+    if (gen.num > 0) {
+	setInterval(function(){
+		addToCookieBank(gen.cps);
+	    }, 1000);
+	updateHTML(gen, html, htmlup);
+    }
+};
+
+
+
+
 
 //---- GENERATOR 0 ------
 var gen0button = document.getElementById("gen0");
@@ -151,13 +164,18 @@ $.get("/getpythonuser", function(data) {
     });
 
 $.get("/getpythoncookies", function(data) {
-    console.log($.data);
-    console.log($.parseJSON(data));
-    cookieBank = $.parseJSON(data);});
+	console.log($.data);
+	console.log($.parseJSON(data));
+	cookieBank = $.parseJSON(data);
+    });
 
 $.get("/getpythongen0", function(data) {
-    console.log($.parseJSON(data));
-    gen0.num = $.parseJSON(data);});
+	console.log($.parseJSON(data));
+	gen0.num = $.parseJSON(data);
+
+	console.log(gen0.num);
+	generatorfuntimes2(gen0, gen0HTML, up0HTML);
+    });
 
 updateCB(0);
 

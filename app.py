@@ -142,7 +142,7 @@ def get_python_gen0():
     if 'user' in session:
         username = session['user']
         gen0 = db_builder.getGen1(username)
-        print gen0 + "got gen1 num"
+        print gen0
         return json.dumps(gen0)
     return json.dumps("no one is logged in yet")
 
