@@ -137,6 +137,15 @@ def get_python_cookies():
         return json.dumps(cookies)
     return json.dumps("no one is logged in yet")
 
+@cookie_app.route('/getpythongen0')
+def get_python_gen0():
+    if 'user' in session:
+        username = session['user']
+        gen0 = db_builder.getGen1(username)
+        print gen0 + "got gen1 num"
+        return json.dumps(gen0)
+    return json.dumps("no one is logged in yet")
+
 '''    
     return render_templater("game.html", temp = getWeather())
 

@@ -151,10 +151,13 @@ $.get("/getpythonuser", function(data) {
     });
 
 $.get("/getpythoncookies", function(data) {
-        console.log($.data);
-        console.log($.parseJSON(data));
-        cookieBank = $.parseJSON(data);
-    });
+    console.log($.data);
+    console.log($.parseJSON(data));
+    cookieBank = $.parseJSON(data);});
+
+$.get("/getpythongen0", function(data) {
+    console.log($.parseJSON(data));
+    gen0.num = $.parseJSON(data);});
 
 updateCB(0);
 
