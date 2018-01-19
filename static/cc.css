@@ -1,11 +1,26 @@
 body{
-    font-family: sans-serif;
-    font-size: 1em;
+    font-family: monospace;
+    font-size: 1.5em;
     background-image: url("../static/images3.jpg");
     background-repeat: no-repeat;
-    background-size: 100% 130%;
+    background-size: 100% 200%;
     color: white;
     text-shadow: 2px 2px black;
+}
+
+#id{
+    width: 100%;
+}
+
+.cookiediv{
+    float: left;
+    width: 30%;
+}
+
+.gendiv{
+    padding-top: 7em;
+    float: right;
+    width: 70%;
 }
 
 /* Tooltip container */
