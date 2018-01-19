@@ -18,6 +18,8 @@ def check_password(hashed_password, user_password):
 cookie_app = Flask(__name__)
 cookie_app.secret_key = os.urandom(32)
 
+user = ""
+
 #----------------------HOME PAGE-------------------------------
 
 @cookie_app.route("/")
@@ -45,6 +47,7 @@ def authenticate():
         flash("user dne")
         return redirect(url_for('login')) #user dne
     elif (status == 1): #sucessful
+        session['user'] = input_username
         return redirect(url_for('game'))
     
     flash("password wrong")
@@ -104,27 +107,35 @@ def game():
 
 #---------------------SAVE-------------------------------
 
+
 @cookie_app.route('/save', methods=['GET', 'POST'])
 def save():
-    #data = request.args.get("text")
+    #data = request.args.get("text")              
     username = request.form["username"]
     cookies = request.form["cookies"]
     gen0 = request.form["gen0"]
     gen1 = request.form["gen1"]
-    print "username is:"
-    print username
-    print "cookies is:"
-    print cookies
-    print "gen0 is:"
-    print gen0
-    print "gen1 is:"
-    print gen1
-    #response = {'uc' : data }
-    #print "after dumping: \n"
-    #response = json.dumps(response)
-    #print response
-    flash("haelo")
-    return username
+    db_builder.setCookies(username, cookies)
+    db_builder.setGen1(username, gen0)
+    db_builder.setGen2(username, gen1)
+    return "awfewadewd";
+
+
+@cookie_app.route('/getpythonuser')
+def get_python_user():
+    if 'user' in session:
+        username = session['user']
+        return json.dumps(session['user'])
+    return json.dumps("no one is logged in yet")
+
+
+@cookie_app.route('/getpythoncookies')
+def get_python_cookies():
+    if 'user' in session:
+        username = session['user']
+        cookies = db_builder.getCookies(username)
+        return json.dumps(cookies)
+    return json.dumps("no one is logged in yet")
 
 '''    
     return render_templater("game.html", temp = getWeather())

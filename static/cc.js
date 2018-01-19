@@ -118,6 +118,48 @@ up1.addEventListener('click', function(){
 
     }
 });
+
+//---- GENERATOR 2 ------ 
+
+/*
+
+var gen2button = document.getElementById("gen2");
+var gen2HTML = document.getElementById("gen2p");
+var gen2 = new Generator(0,0, 7000, 20, 10000, 3);
+var up2HTML = document.getElementById("up2p");
+var up2 = document.getElementById("up2");
+gen2button.addEventListener('click', function() { generatorfuntimes(gen2, gen2HTML, up2HTML);});
+
+up2.addEventListener('click', function(){
+	console.log("clicked up");
+	if(cookieBank-gen2.upVal>=0){
+	    addToCookieBank(-gen2.upVal);
+	    gen2.upgradeCPS();
+	    updateHTML(gen2, gen2HTML, up2HTML);
+	    console.log("upVal: " + gen2.upVal + " cps: " + gen2.cps);
+	}
+    });
+
+*/
+
+//-------LOADING----------                                                              
+var username;
+
+$.get("/getpythonuser", function(data) {
+        console.log($.parseJSON(data));
+        username = $.parseJSON(data);
+    });
+
+$.get("/getpythoncookies", function(data) {
+        console.log($.data);
+        console.log($.parseJSON(data));
+        cookieBank = $.parseJSON(data);
+    });
+
+updateCB(0);
+
+//------------------------   
+
 /*
 var gen1button = document.getElementById("gen1");
 var gen1HTML = document.getElementById("gen1p");
@@ -136,13 +178,14 @@ up1.addEventListener('click', function(){
     }
 });
 */
+
 //--------SAVING----------
 
 var saving = function(e) {    
     
     var value2 = "hello";
     
-    var values = {"username" : "insertuser",
+    var values = {"username" : username,
 		  "cookies" : cookieBank,
 		  "cps" : "insertcps",
 		  "gen0" : gen0.num,
@@ -153,7 +196,7 @@ var saving = function(e) {
     }
     
     console.log(values);
-
+    
     $.ajax({
 	    url:'/save',
 		type: 'POST',
