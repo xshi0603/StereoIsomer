@@ -142,9 +142,25 @@ def get_python_gen0():
     if 'user' in session:
         username = session['user']
         gen0 = db_builder.getGen1(username)
-        print gen0
         return json.dumps(gen0)
     return json.dumps("no one is logged in yet")
+
+@cookie_app.route('/getpythongen1')
+def get_python_gen1():
+    if 'user' in session:
+        username = session['user']
+        gen1 = db_builder.getGen2(username)
+        return json.dumps(gen1)
+    return json.dumps("no one is logged in yet")
+'''
+@cookie_app.route('/getpythongen1')
+def get_python_gen1():
+    if 'user' in session:
+        username = session['user']
+        gen1 = db_builder.getGen2(username)
+        return json.dumps(gen1)
+    return json.dumps("no one is logged in yet")
+'''
 
 '''    
     return render_templater("game.html", temp = getWeather())

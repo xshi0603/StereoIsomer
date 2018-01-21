@@ -81,12 +81,14 @@ var generatorfuntimes = function(gen, html, htmlup){
 };
     
 var generatorfuntimes2 = function(gen, html, htmlup){
-    if (gen.num > 0) {
-	setInterval(function(){
-		addToCookieBank(gen.cps);
-	    }, 1000);
-	updateHTML(gen, html, htmlup);
-    }
+
+    gen.num += 1;
+    gen.updateCost();
+    setInterval(function(){
+	    addToCookieBank(gen.cps);
+	}, 1000);
+    updateHTML(gen, html, htmlup);
+
 };
 
 
@@ -170,12 +172,36 @@ $.get("/getpythoncookies", function(data) {
     });
 
 $.get("/getpythongen0", function(data) {
-	console.log($.parseJSON(data));
-	gen0.num = $.parseJSON(data);
-
-	console.log(gen0.num);
-	generatorfuntimes2(gen0, gen0HTML, up0HTML);
+	var gen0_num = $.parseJSON(data);
+	console.log(gen0_num);
+	
+	for (i = 0; i < gen0_num; i++) { 
+	    generatorfuntimes2(gen0, gen0HTML, up0HTML);
+	    console.log("upgraded 0");
+	}
     });
+
+$.get("/getpythongen1", function(data) {
+        var gen1_num = $.parseJSON(data);
+        console.log(gen1_num);
+
+        for (i = 0; i < gen1_num; i++) {
+            generatorfuntimes2(gen1, gen1HTML, up1HTML);
+            console.log("upgraded 1");
+        }
+    });
+/*
+$.get("/getpythongen0", function(data) {
+        var gen0_num = $.parseJSON(data);
+        console.log(gen0_num);
+
+        for (i = 0; i < gen0_num; i++) {
+            generatorfuntimes2(gen0, gen0HTML, up0HTML);
+            console.log("upgraded");
+        }
+    });
+*/
+//gen0button.addEventListener('click', function() { generatorfuntimes(gen0, gen0HTML, up0HTML);});
 
 updateCB(0);
 
