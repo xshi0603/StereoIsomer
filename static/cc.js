@@ -9,6 +9,7 @@ var upClickValHTML = document.getElementById("upClickVal");
 var upClickValP = document.getElementById("upClickValP");
 var upClickVal = 2; // multiplies current click val with this val when upgraded
 var upClickValCost = 50;
+var upClickNum = 0; //amount of times upClick has been upgraded
 
 var printsmth = function(e){
     console.log("clicked button");
@@ -39,7 +40,22 @@ var upgradeClickVal = function(val){
 	upClickValCost *= 2;
 	// update description
 	upClickValP.innerHTML = "Cost: " + upClickValCost + " --- Upgrade Click Value to " + clickVal*upClickVal + " cps";
+	// increment counter
+	upClickNum += 1;
     }
+};
+
+var upgradeClickVal2 = function(){//for loading
+
+    // increase click val                                                                                                                                                     
+    clickVal *= upClickVal;
+    // increase upgrade cost                                                                                                                                                  
+    upClickValCost *= 2;
+    // update description                                                                                                                                                     
+    upClickValP.innerHTML = "Cost: " + upClickValCost + " --- Upgrade Click Value to " + clickVal*upClickVal + " cps";
+    // increment counter
+    upClickNum += 1;
+    
 };
 
 upClickValHTML.addEventListener('click', function() { upgradeClickVal(upClickVal);});
@@ -136,11 +152,9 @@ up1.addEventListener('click', function(){
 
 //---- GENERATOR 2 ------ 
 
-/*
-
 var gen2button = document.getElementById("gen2");
 var gen2HTML = document.getElementById("gen2p");
-var gen2 = new Generator(0,0, 7000, 20, 10000, 3);
+var gen2 = new Generator(0,0, 12000, 47, 10000, 3);
 var up2HTML = document.getElementById("up2p");
 var up2 = document.getElementById("up2");
 gen2button.addEventListener('click', function() { generatorfuntimes(gen2, gen2HTML, up2HTML);});
@@ -155,24 +169,26 @@ up2.addEventListener('click', function(){
 	}
     });
 
-*/
-
 //-------LOADING----------                                                              
 var username;
 
 $.get("/getpythonuser", function(data) {
+	console.log("LOADING");
+	console.log("username");
         console.log($.parseJSON(data));
         username = $.parseJSON(data);
     });
 
 $.get("/getpythoncookies", function(data) {
-	console.log($.data);
+	console.log("cookies");
 	console.log($.parseJSON(data));
 	cookieBank = $.parseJSON(data);
+	updateCB(0);
     });
 
 $.get("/getpythongen0", function(data) {
 	var gen0_num = $.parseJSON(data);
+	console.log("gen0:");
 	console.log(gen0_num);
 	
 	for (i = 0; i < gen0_num; i++) { 
@@ -183,6 +199,7 @@ $.get("/getpythongen0", function(data) {
 
 $.get("/getpythongen1", function(data) {
         var gen1_num = $.parseJSON(data);
+	console.log("gen1:");
         console.log(gen1_num);
 
         for (i = 0; i < gen1_num; i++) {
@@ -190,20 +207,30 @@ $.get("/getpythongen1", function(data) {
             console.log("upgraded 1");
         }
     });
-/*
-$.get("/getpythongen0", function(data) {
-        var gen0_num = $.parseJSON(data);
-        console.log(gen0_num);
 
-        for (i = 0; i < gen0_num; i++) {
-            generatorfuntimes2(gen0, gen0HTML, up0HTML);
-            console.log("upgraded");
+$.get("/getpythongen2", function(data) {
+        var gen2_num = $.parseJSON(data);
+	console.log("gen2:");
+        console.log(gen2_num);
+
+        for (i = 0; i < gen2_num; i++) {
+            generatorfuntimes2(gen2, gen2HTML, up2HTML);
+            console.log("upgraded 2");
         }
     });
-*/
-//gen0button.addEventListener('click', function() { generatorfuntimes(gen0, gen0HTML, up0HTML);});
 
-updateCB(0);
+$.get("/getpythonclick", function(data) {
+        var click = $.parseJSON(data);
+        console.log("click:");
+        console.log(click);
+
+        for (i = 0; i < click; i++) {
+	    upgradeClickVal2();
+            console.log("upgraded click");
+        }
+    });
+
+//gen0button.addEventListener('click', function() { generatorfuntimes(gen0, gen0HTML, up0HTML);});
 
 //------------------------   
 
@@ -237,9 +264,8 @@ var saving = function(e) {
 		  "cps" : "insertcps",
 		  "gen0" : gen0.num,
 		  "gen1" : gen1.num,
-		  "clickVal" : clickVal,
-		  //"generators" : {"gen0" : 1,
-		  //		  "gen1" : 2 }, 
+		  "gen2" : gen2.num,
+		  "clickNum" : upClickNum,
     }
     
     console.log(values);

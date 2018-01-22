@@ -94,11 +94,9 @@ def weather():
 
 @cookie_app.route('/game', methods=['GET'])
 def game():
-    #if 'username' not in session:
-    #    flash("Session timed out")
-    #    return redirect(url_for('login'))
-    #current_user = session["username"]
-
+    if 'user' not in session:
+        flash("Session timed out. Please log in")
+        return redirect(url_for('login'))
 
     return render_template("game.html", temp = getWeather())
     #return render_template("game.html")
@@ -115,10 +113,14 @@ def save():
     cookies = request.form["cookies"]
     gen0 = request.form["gen0"]
     gen1 = request.form["gen1"]
+    gen2 = request.form["gen2"]
+    clickNum = request.form["clickNum"]
     db_builder.setCookies(username, cookies)
     db_builder.setGen1(username, gen0)
     db_builder.setGen2(username, gen1)
-    return "awfewadewd";
+    db_builder.setGen3(username, gen2)
+    db_builder.setCPS(username, clickNum)
+    return "filler";
 
 
 @cookie_app.route('/getpythonuser')
@@ -152,16 +154,22 @@ def get_python_gen1():
         gen1 = db_builder.getGen2(username)
         return json.dumps(gen1)
     return json.dumps("no one is logged in yet")
-'''
-@cookie_app.route('/getpythongen1')
-def get_python_gen1():
+
+@cookie_app.route('/getpythongen2')
+def get_python_gen2():
     if 'user' in session:
         username = session['user']
-        gen1 = db_builder.getGen2(username)
-        return json.dumps(gen1)
+        gen2 = db_builder.getGen3(username)
+        return json.dumps(gen2)
     return json.dumps("no one is logged in yet")
-'''
 
+@cookie_app.route('/getpythonclick')
+def get_python_click():
+    if 'user' in session:
+        username = session['user']
+        click = db_builder.getCPS(username)
+        return json.dumps(click)
+    return json.dumps("no one is logged in yet")
 '''    
     return render_templater("game.html", temp = getWeather())
 
