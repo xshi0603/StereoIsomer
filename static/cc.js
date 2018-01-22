@@ -64,7 +64,7 @@ class Generator {
 }
 
 var updateHTML = function(gen, genHTML, upHTML){
-    genHTML.innerHTML = "Cost: " + Math.floor(gen.cost) + " --- Generates " + Math.round(gen.cps) + " cps. You have " + gen.num + " gen" + gen.id;
+    genHTML.innerHTML = "Cost: " + Math.floor(gen.cost) + " --- Generates " + Math.round(gen.cps) + " cps. You have " + gen.num;
     upHTML.innerHTML = "Cost: " + gen.upVal + "--- Multiplier: " + gen.upMult;
 };
 
