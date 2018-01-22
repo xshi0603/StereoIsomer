@@ -115,11 +115,17 @@ def save():
     gen1 = request.form["gen1"]
     gen2 = request.form["gen2"]
     clickNum = request.form["clickNum"]
+    gen0Up = request.form["gen0Up"]
+    gen1Up = request.form["gen1Up"]
+    gen2Up = request.form["gen2Up"]
     db_builder.setCookies(username, cookies)
     db_builder.setGen1(username, gen0)
     db_builder.setGen2(username, gen1)
     db_builder.setGen3(username, gen2)
     db_builder.setCPS(username, clickNum)
+    db_builder.setUpgrade1(username, gen0Up)
+    db_builder.setUpgrade2(username, gen1Up)
+    db_builder.setUpgrade3(username, gen2Up)
     return "filler";
 
 
@@ -170,6 +176,32 @@ def get_python_click():
         click = db_builder.getCPS(username)
         return json.dumps(click)
     return json.dumps("no one is logged in yet")
+
+@cookie_app.route('/getpythonup0')
+def get_python_up0():
+    if 'user' in session:
+        username = session['user']
+        up0 = db_builder.getUpgrade1(username)
+        return json.dumps(up0)
+    return json.dumps("no one is logged in yet")
+
+@cookie_app.route('/getpythonup1')
+def get_python_up1():
+    if 'user' in session:
+        username = session['user']
+        up1 = db_builder.getUpgrade2(username)
+        return json.dumps(up1)
+    return json.dumps("no one is logged in yet")
+
+@cookie_app.route('/getpythonup2')
+def get_python_up2():
+    if 'user' in session:
+        username = session['user']
+        up2 = db_builder.getUpgrade3(username)
+        return json.dumps(up2)
+    return json.dumps("no one is logged in yet")
+
+
 '''    
     return render_templater("game.html", temp = getWeather())
 

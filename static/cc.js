@@ -114,46 +114,64 @@ var generatorfuntimes2 = function(gen, html, htmlup){
 //---- GENERATOR 0 ------
 var gen0button = document.getElementById("gen0");
 var gen0HTML = document.getElementById("gen0p");
+var gen0Upgraded = 0;
 var gen0 = new Generator(0,0, 100, 1, 500, 1.5);
 var up0HTML = document.getElementById("up0p");
 var up0 = document.getElementById("up0");
 
 gen0button.addEventListener('click', function() { generatorfuntimes(gen0, gen0HTML, up0HTML);});
+
 up0.addEventListener('click', function(){
-    console.log("clicked up");
-    if(cookieBank-gen0.upVal>=0){
-	addToCookieBank(-gen0.upVal);
-	gen0.upgradeCPS();
-	updateHTML(gen0, gen0HTML, up0HTML);
-	console.log("upVal: " + gen0.upVal + " cps: " + gen0.cps);
+	console.log("clicked up");
+	if(cookieBank-gen0.upVal>=0){
+	    addToCookieBank(-gen0.upVal);
+	    gen0.upgradeCPS();
+	    gen0Upgraded += 1;
+	    updateHTML(gen0, gen0HTML, up0HTML);
+	    console.log("upVal: " + gen0.upVal + " cps: " + gen0.cps);
+	    
+	}
+    });
 
-    }
-});
-
+var upGen0 = function(){ //for loading
+    gen0.upgradeCPS()
+    gen0Upgraded += 1;
+    updateHTML(gen0, gen0HTML, up0HTML);
+}
 
 //---- GENERATOR 1 ------
 var gen1button = document.getElementById("gen1");
 var gen1HTML = document.getElementById("gen1p");
+var gen1Upgraded = 0;
 var gen1 = new Generator(0,0, 1100, 8, 5000, 2);
 var up1HTML = document.getElementById("up1p");
 var up1 = document.getElementById("up1");
 
 gen1button.addEventListener('click', function() { generatorfuntimes(gen1, gen1HTML, up1HTML);});
-up1.addEventListener('click', function(){
-    console.log("clicked up");
-    if(cookieBank-gen1.upVal>=0){
-	addToCookieBank(-gen1.upVal);
-	gen1.upgradeCPS();
-	updateHTML(gen1, gen1HTML, up1HTML);
-	console.log("upVal: " + gen1.upVal + " cps: " + gen1.cps);
 
-    }
-});
+up1.addEventListener('click', function(){
+	console.log("clicked up");
+	if(cookieBank-gen1.upVal>=0){
+	    addToCookieBank(-gen1.upVal);
+	    gen1.upgradeCPS();
+	    gen1Upgraded += 1;
+	    updateHTML(gen1, gen1HTML, up1HTML);
+	    console.log("upVal: " + gen1.upVal + " cps: " + gen1.cps);
+	    
+	}
+    });
+
+var upGen1 = function(){ //for loading                                                                                                                    
+    gen1.upgradeCPS()
+    gen1Upgraded += 1;
+    updateHTML(gen1, gen1HTML, up1HTML);
+}
 
 //---- GENERATOR 2 ------ 
 
 var gen2button = document.getElementById("gen2");
 var gen2HTML = document.getElementById("gen2p");
+var gen2Upgraded = 0;
 var gen2 = new Generator(0,0, 12000, 47, 10000, 3);
 var up2HTML = document.getElementById("up2p");
 var up2 = document.getElementById("up2");
@@ -164,10 +182,17 @@ up2.addEventListener('click', function(){
 	if(cookieBank-gen2.upVal>=0){
 	    addToCookieBank(-gen2.upVal);
 	    gen2.upgradeCPS();
+	    gen2Upgraded += 1;
 	    updateHTML(gen2, gen2HTML, up2HTML);
 	    console.log("upVal: " + gen2.upVal + " cps: " + gen2.cps);
 	}
     });
+
+var upGen2 = function(){ //for loading                                                                                                                                
+    gen2.upgradeCPS()
+    gen2Upgraded += 1;
+    updateHTML(gen2, gen2HTML, up2HTML);
+}
 
 //-------LOADING----------                                                              
 var username;
@@ -230,6 +255,39 @@ $.get("/getpythonclick", function(data) {
         }
     });
 
+$.get("/getpythonup0", function(data) {
+        var up0L = $.parseJSON(data);
+        console.log("up0L:");
+        console.log(up0L);
+
+        for (i = 0; i < up0L; i++) {
+	    upGen0();
+            console.log("upgraded gen0");
+        }
+    });
+
+$.get("/getpythonup1", function(data) {
+        var up1L = $.parseJSON(data);
+        console.log("up1L:");
+        console.log(up1L);
+
+        for (i = 0; i < up1L; i++) {
+            upGen1();
+            console.log("upgraded gen1");
+        }
+    });
+
+$.get("/getpythonup2", function(data) {
+        var up2L = $.parseJSON(data);
+        console.log("up2L:");
+        console.log(up2L);
+
+        for (i = 0; i < up2L; i++) {
+            upGen2();
+            console.log("upgraded gen2");
+        }
+    });
+
 //gen0button.addEventListener('click', function() { generatorfuntimes(gen0, gen0HTML, up0HTML);});
 
 //------------------------   
@@ -257,16 +315,18 @@ up1.addEventListener('click', function(){
 
 var saving = function(e) {    
     
-    var value2 = "hello";
+    console.log("saving");
     
     var values = {"username" : username,
 		  "cookies" : cookieBank,
-		  "cps" : "insertcps",
 		  "gen0" : gen0.num,
 		  "gen1" : gen1.num,
 		  "gen2" : gen2.num,
 		  "clickNum" : upClickNum,
-    }
+		  "gen0Up" : gen0Upgraded,
+		  "gen1Up" : gen1Upgraded,
+		  "gen2Up" : gen2Upgraded
+    };
     
     console.log(values);
     
@@ -283,7 +343,7 @@ var saving = function(e) {
 		//document.getElementById('h2').innerHTML = d['uc'];
 	    }
 	});
-    console.log('goodbye');
+    console.log('saving done');
 };
 
 document.getElementById("save").addEventListener( 'click', saving );
