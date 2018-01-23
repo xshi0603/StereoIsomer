@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous"/>
     
     <link rel="stylesheet" type="text/css" href="../static/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../static/lb.css"/>
     
     <title>  Home  </title>
     {% set messages = get_flashed_messages() %}
@@ -41,7 +42,7 @@
   <body>
 
     <br>
-    
+    <div class="lb">
     <table>
       <tr>
 	<th> Ranking </th>
@@ -59,7 +60,7 @@
       </tr>
       {% endfor %}
     </table>
-
+    </div>
       
   </body>
 </html>
