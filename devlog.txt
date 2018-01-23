@@ -115,3 +115,6 @@ leaderboard css
 jackieW -- 2018-01-23 15:03:07
 update credits
 
+xingtaoShi -- 2018-01-23 18:07:22
+fixed bug
+

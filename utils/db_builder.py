@@ -46,8 +46,7 @@ def checkUsername(user):
         print x[0]
         if (x[0] == user):
             return False
-        else:
-            return True
+    return True
 
 #add a user
 def addUser(new_username, new_password):

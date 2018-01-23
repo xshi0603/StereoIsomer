@@ -68,7 +68,10 @@ def accountSubmit():
     username = request.form['newUsername']
     password = request.form['newPassword']
     
-    db_builder.addUser(username, password)
+    status = db_builder.addUser(username, password)
+    print status
+    if (status == False):
+        flash("User already exists")
     return redirect(url_for('login'))
     
 #-----------------------------------------------------------
