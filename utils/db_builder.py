@@ -448,6 +448,7 @@ if __name__ == '__main__':
     addUser('bob', '123')
     addUser('joe', '123')
     addUser('hamlet','123')
+    addUser('test','test')
 
     print getUserID('manahal')
     print getUserID('bob')
@@ -471,6 +472,7 @@ if __name__ == '__main__':
     setCookies('manahal', 500)
     setCookies('bob', 700)
     setCookies('hamlet', 1000)
+    setCookies('test', 10000)
     print getCookies('manahal')
 
     print 'original cps manahal'
@@ -519,4 +521,7 @@ if __name__ == '__main__':
     setGen1('manahal', 10)
     print getGen1('manahal')
 
+    print leaderboard()
+
+    print addUser('manahal','123')
     print leaderboard()
