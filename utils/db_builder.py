@@ -397,10 +397,12 @@ def addGenerator(user, new_gen):
 '''
 
 #=========================================================================
-
-#returns a dictionary in which key value is username and key value is list
-#list is as follows: [<userID>,<cookieCount>,<rank>]
 '''
+returns a dictionary in which key value is username and key value is list
+list is as follows: [(u'hamlet', [3, 1000]), (u'bob', [1, 700]), (u'manahal', [0, 500]), (u'joe', [2, 0])]
+
+'''
+
 def leaderboard():
     f="data/info.db"
     db = sqlite3.connect(f) #open if f exists, otherwise create
@@ -415,15 +417,24 @@ def leaderboard():
         d[username] = [x[0], cookies]
     
     sort = sorted(d.iteritems(), key=lambda value:value[1][1])
+    print "sorted something"
     print sort
-    print d
-    sort_dict = {}
+    #print "unsorted dict"
+    #print d
+    d_sort = []
     for x in sort:
-        sort_dict[[x][0]] = 
-    return sort
+        print "entry..."
+        print x
+        print "name"
+        print x[0]
+        print "id"
+        print x[1][0]
+        print "cookie count"
+        print x[1][1]
+        d_sort.insert(0,x)
+    return d_sort
     db.commit()
     db.close()
-'''
 
     
 #TESTING
@@ -507,3 +518,5 @@ if __name__ == '__main__':
     print getGen1('manahal')
     setGen1('manahal', 10)
     print getGen1('manahal')
+
+    print leaderboard()
