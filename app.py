@@ -231,15 +231,20 @@ def logout():
 
 #--------------------------------------------------------
 
+#------------------LEADERBOARD---------------------------
+
+@cookie_app.route('/leaderboard', methods=['GET'])
+def leaderboard():
+    list = db_builder.leaderboard()
+    return render_template("leaderboard.html", lb = list)
+
+#--------------------------------------------------------
+
 #---------------------MISC-------------------------------
 
 @cookie_app.route('/credits', methods=['GET'])
 def credits():
     return render_template("credits.html")
-
-@cookie_app.route('/leaderboard', methods=['GET'])
-def leaderboard():
-    return render_template("leaderboard.html")
 
 @cookie_app.route('/achievements', methods=['GET'])
 def achievements():

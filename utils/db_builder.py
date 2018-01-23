@@ -414,7 +414,7 @@ def leaderboard():
         #print x[1]
         username = getUsername(x[0])
         cookies = getCookies(username)
-        d[username] = [x[0], cookies]
+        d[username] = [cookies, x[0]]
     
     sort = sorted(d.iteritems(), key=lambda value:value[1][1])
     print "sorted something"

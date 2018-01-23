@@ -39,33 +39,27 @@
   </head>
 
   <body>
-    
-    <br><br>
-    
-    <div class="jumbotron ">
-      <h1 class="display-3">Welcome</h1>
-    </div>
-    
-    <div class="row">
-      <div class="col">
 
-	<div class="box1">
-	  If you already have an account, sign in here!!!<br><br>
-	  <button type="button" class="btn btn-a btn-lg btn-block">
-	    <a href="login">Login</a>
-	  </button>
-	</div>
+    <br>
+    
+    <table>
+      <tr>
+	<th> Ranking </th>
+	<th> Name </th>
+	<th> Cookies </th>
+      </tr>
 
-      </div>
-      <div class="col">
-	<div class="box2">
-	  If you don't have an account, you can create one.
-	  <br><br>
-	  <button type="button" class="btn btn-a btn-lg btn-block">
-	    <a href="account">Register</a>
-	  </button>
-	</div>
-      </div>
+      {% for data in lb|sort(reverse = True, attribute = '1')%}
+      <tr>
+	<td> 
+	  {{ loop.index }}
+	</td>
+	<td> {{ data[0] }} </td>
+	<td> {{ data[1][0] }} </td>
+      </tr>
+      {% endfor %}
+    </table>
+
       
   </body>
 </html>
