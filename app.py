@@ -24,7 +24,8 @@ user = ""
 
 @cookie_app.route("/")
 def root():
-    return render_template("home.html")
+    list = db_builder.leaderboard()
+    return render_template("home.html", lb=list)
 
 #-------------------------------------------------------------------
 
@@ -239,7 +240,7 @@ def logout():
 @cookie_app.route('/leaderboard', methods=['GET'])
 def leaderboard():
     list = db_builder.leaderboard()
-    return render_template("leaderboard.html", lb = list)
+    return render_template("home.html", lb = list)
 
 #--------------------------------------------------------
 
@@ -247,7 +248,11 @@ def leaderboard():
 
 @cookie_app.route('/credits', methods=['GET'])
 def credits():
-    return render_template("credits.html")
+    return redirect(url_for("root", _anchor="credits"))
+
+@cookie_app.route('/about', methods=['GET'])
+def about():
+    return redirect(url_for("root", _anchor="about"))
 
 @cookie_app.route('/achievements', methods=['GET'])
 def achievements():

@@ -1,0 +1,65 @@
+<! DOCTYPE html>
+<html>
+  
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous"/>
+    
+    <link rel="stylesheet" type="text/css" href="../static/style.css"/>
+    
+    <title>  Home  </title>
+    {% set messages = get_flashed_messages() %}
+    {% for message in messages %}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+	<span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <h3> {{message}} </h3>
+    
+    {% endfor %}
+
+
+    <div class="container-fluid">
+      <h1>StereoIsomers</h1>
+    </div>
+
+    <div class="blog-masthead">
+      <div class="row-10">
+	<nav class="nav nav-lt">
+	  <a class="nav-link active" href="/">Home</a>
+	  <a class="nav-link" href="/game">Game</a>
+	  <a class="nav-link" href="/leaderboard">Leaderboard</a>
+	  <a class="nav-link" href="/credits">Credits</a>
+	  <a class="nav-link" href="/login">Login</a>
+	  <a class="nav-link" href="/account">Register</a>
+	</nav>
+      </div>
+    </div>
+
+  </head>
+
+  <body>
+    <center>
+      <div class="container-1">
+	<form class="signin" method = "post" action ="/authenticate">
+	  
+	  Enter your username:<br>
+	  <input type="text" name="username" required><br><br>
+	  
+	  Enter your password: <br>
+	  <input type="password" name="password" required><br><br>
+	  <input type="submit" value="submit" class = "button2"> <br> <br>
+	</form>
+	
+	<form method = "GET" action = "/account">
+	  Don't have an account?
+	  <input  type="submit" value = "Register" class = "button1">
+	</form>
+	<a href = "/"> Back </a>
+	
+      </div>  
+    </center>
+
+
+  </body>
+</html>

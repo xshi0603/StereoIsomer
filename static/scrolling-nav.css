@@ -17,3 +17,14 @@ header {
 section {
   padding: 150px 0;
 }
+
+#cookie2{
+    width: 500px;
+    padding-left: 200px;
+}
+
+#cookie:active{
+    -webkit-transform: scale(0.9);
+    -ms-transform: scale(0.9);
+    transform: scale(0.9);
+}

@@ -10,11 +10,16 @@
 
     <title>StereoIsomers: Cookie Clicker</title>
 
+    {% set messages = get_flashed_messages() %}
+    {% for message in messages %}
+    <h3> {{message}} </h3>
+    {% endfor %}
+
     <!-- Bootstrap core CSS -->
     <link rel = "stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 
     <!-- Custom styles for this template -->
-    <link href="css/scrolling-nav.css" rel="stylesheet">
+    <link href="../static/scrolling-nav.css" rel="stylesheet">
 
   </head>
 
@@ -34,18 +39,18 @@
 		<a class="nav-link js-scroll-trigger" href="#about">About</a>
               </li>
               <li class="nav-item">
-		<a class="nav-link js-scroll-trigger" href="#services">Leaderboard</a>
+		<a class="nav-link js-scroll-trigger" href="#leaderboard">Leaderboard</a>
               </li>
               <li class="nav-item">
-		<a class="nav-link js-scroll-trigger" href="#contact">Credits</a>
+		<a class="nav-link js-scroll-trigger" href="#credits">Credits</a>
               </li>
 	  </div>
         </div>
 	<ul class="nav navbar-nav navbar-right">
 	  <li>
-	    <a style="padding-right: 20px" href="#game">Play</a>
-	    <a style="padding-right: 20px" href="#login">Login</a>
-	    <a style="padding-right: 20px" href="#register">Register</a>
+	    <a style="padding-right: 20px" href="/game">Play</a>
+	    <a style="padding-right: 20px" href="/login">Login</a>
+	    <a style="padding-right: 20px" href="/account">Register</a>
 	  </li>
 	</ul>
       </div>
@@ -73,14 +78,14 @@
           </div>
 
 	  <div style="margin-right: 0" class="col-lg-4">
-	    <img id="cookie" src="cookie.png">
+	    <img id="cookie" src="../static/cookie.png">
 	  </div>
         </div>
       </div>
     </section>
 
-    <section id="services" class="bg-light">
-      <div class="container">
+    <section id="leaderboard" class="bg-light">
+      <div class="container lb">
 	<div class="text-center">
 	  <h2>Leaderboard</h2>
 	</div>
@@ -89,30 +94,22 @@
           <table class="table table-hover">
 	    <thead>
 	      <tr>
-		<th>#</th>
-		<th>First Name</th>
-		<th>Last Name</th>
-		<th>Username</th>
+		<th>Ranking</th>
+		<th>Name</th>
+		<th>Cookies</th>
 	      </tr>
 	    </thead>
 	    <tbody>
+
+	      {% for data in lb|sort(reverse = True, attribute = '1')%}
 	      <tr>
-		<th scope="row">1</th>
-		<td>Mark</td>
-		<td>Otto</td>
-		<td>@mdo</td>
+		<th scope="row"> 
+		  {{ loop.index }}
+		</th>
+		<td> {{ data[0] }} </td>
+		<td> {{ data[1][0] }} </td>
 	      </tr>
-	      <tr>
-		<th scope="row">2</th>
-		<td>Jacob</td>
-		<td>Thornton</td>
-		<td>@fat</td>
-	      </tr>
-	      <tr>
-		<th scope="row">3</th>
-		<td colspan="2">Larry the Bird</td>
-		<td>@twitter</td>
-	      </tr>
+	      {% endfor %}
 	    </tbody>
 	  </table>
 	  </div>
@@ -120,7 +117,7 @@
       </div>
     </section>
 
-    <section id="contact">
+    <section id="credits">
       <div class="container">
         <div class="row">
           <div class="col-lg-8 mx-auto">
@@ -149,8 +146,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
 
+    <!-- Plugin JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+
     <!-- Custom JavaScript for this theme -->
-    <script src="js/scrolling-nav.js"></script>
+    <script src="../static/scrolling-nav.js"></script>
 
   </body>
 

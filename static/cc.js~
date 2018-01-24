@@ -81,7 +81,7 @@ class Generator {
 
 var updateHTML = function(gen, genHTML, upHTML){
     genHTML.innerHTML = "Cost: " + Math.floor(gen.cost) + " --- Generates " + Math.round(gen.cps) + " cps. You have " + gen.num;
-    upHTML.style.title = "Cost: " + gen.upVal + "--- Multiplier: " + gen.upMult;
+    upHTML.innerHTML = "Cost: " + gen.upVal + "--- Multiplier: " + gen.upMult;
 };
 
 var generatorfuntimes = function(gen, html, htmlup){
@@ -116,7 +116,7 @@ var gen0button = document.getElementById("gen0");
 var gen0HTML = document.getElementById("gen0p");
 var gen0Upgraded = 0;
 var gen0 = new Generator(0,0, 100, 1, 500, 1.5);
-var up0HTML = document.getElementById("up0");
+var up0HTML = document.getElementById("up0p");
 var up0 = document.getElementById("up0");
 
 gen0button.addEventListener('click', function() { generatorfuntimes(gen0, gen0HTML, up0HTML);});
@@ -129,6 +129,7 @@ up0.addEventListener('click', function(){
 	    gen0Upgraded += 1;
 	    updateHTML(gen0, gen0HTML, up0HTML);
 	    console.log("upVal: " + gen0.upVal + " cps: " + gen0.cps);
+	    
 	}
     });
 

@@ -1,11 +1,30 @@
 body{
-    font-family: monospace;
-    font-size: 1.5em;
     background-image: url("../static/images3.jpg");
+    background-size: cover;
     background-repeat: no-repeat;
-    background-size: 100% 200%;
-    color: white;
-    text-shadow: 2px 2px black;
+}
+
+*{
+    padding: 0;
+    margin: 0;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  background: #F37A1D;
+  border-top: 3px solid #F37A1D;   
 }
 
 #id{
@@ -14,50 +33,13 @@ body{
 
 .cookiediv{
     float: left;
-    width: 30%;
 }
 
 .gendiv{
-    padding-top: 7em;
+    padding-top: 4em;
     float: right;
-    width: 60%;
-}
-
-/* Tooltip container */
-.tooltip {
-    position: relative;
-    display: inline-block;
-    border-bottom: 1px dotted black;
-}
-
-.tooltip .tooltiptext {
-    visibility: hidden;
-    width: 120px;
-    background-color: black;
-    color: #fff;
-    text-align: center;
-    border-radius: 6px;
-    padding: 5px 0;
-    position: absolute;
-    z-index: 1;
-    bottom: 150%;
-    left: 50%;
-    margin-left: -60px;
-}
-
-.tooltip .tooltiptext::after {
-    content: "";
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    margin-left: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: black transparent transparent transparent;
-}
-
-.tooltip:hover .tooltiptext {
-    visibility: visible;
+    text-align: right;
+    //width: 60%;
 }
 
 button {
@@ -84,12 +66,22 @@ button:active{
 }
 
 #game{
-    padding-top: 2em;
+    padding-top: 56px;
     padding-left: 2em;
+
+    font-family: monospace;
+    font-size: 1.5em;
+    background-image: url("../static/images3.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 200%;
+    color: white;
+    text-shadow: 2px 2px black;
 }
 
 #cookie{
-    width: 90%;
+    padding-top: 1.5em;
+    padding-left: 3em;
+    width: 380px;
 }
 
 img{
@@ -100,4 +92,21 @@ img{
     -webkit-transform: scale(0.9);
     -ms-transform: scale(0.9);
     transform: scale(0.9);
+}
+
+#cookieBank{
+    padding-top: 3em;
+    padding-left: 2.5em;
+}
+
+#up0{
+    width: 50px;
+}
+
+#up1{
+    width: 50px;
+}
+
+#up2{
+    width: 50px;
 }

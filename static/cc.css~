@@ -1,0 +1,103 @@
+body{
+    font-family: monospace;
+    font-size: 1.5em;
+    background-image: url("../static/images3.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 200%;
+    color: white;
+    text-shadow: 2px 2px black;
+}
+
+#id{
+    width: 100%;
+}
+
+.cookiediv{
+    float: left;
+    width: 30%;
+}
+
+.gendiv{
+    padding-top: 7em;
+    float: right;
+    width: 60%;
+}
+
+/* Tooltip container */
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 150%;
+    left: 50%;
+    margin-left: -60px;
+}
+
+.tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: black transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+
+button {
+    background-color: #3f3f3f;
+    border: none;
+    box-shadow: 3px 5px #888888;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+button:active{
+    cursor: pointer;
+    background-color: black;
+}
+
+#cookie:hover{
+    cursor: pointer;
+}
+
+#game{
+    padding-top: 2em;
+    padding-left: 2em;
+}
+
+#cookie{
+    width: 90%;
+}
+
+img{
+    width:50%;
+}
+
+#cookie:active{
+    -webkit-transform: scale(0.9);
+    -ms-transform: scale(0.9);
+    transform: scale(0.9);
+}
