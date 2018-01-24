@@ -32,3 +32,5 @@ To view the website, navigate to localhost:5000 in your browser. Make an account
   
 
 **Known Bugs**
+- Cookie animation lags when pressing too fast
+- Generator cookies is clunky
