@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>StereoIsomers: Cookie Clicker</title>
+    <title>Cookie Clicker</title>
 
     {% set messages = get_flashed_messages() %}
     {% for message in messages %}
@@ -78,8 +78,8 @@
 	<p id="gen1p"> Cost: 1100 --- Generates 8cps. You have 0</p> 
 
         <!-- GENERATOR 2 --->
-        <img id="gen2" src="../static/grandma buyable.png" onmousedown = "document.getElementById('gen2').src='../static/grandma\ clicked.png'" onmouseup = "document.getElementById('gen2').src='../static/grandma buyable.png'">
-        <img data-toggle="tooltip" title="Cost: 5000 --- Multiplier: 2" id="up2" src="../static/grandma upgrade buyable.png" onmouseover = "document.getElementById('up2').src='../static/grandma upgrade hover.png'" onmouseout = "document.getElementById('up2').src='../static/grandma upgrade buyable.png'">
+        <img id="gen2" src="../static/farm buyable.png" onmousedown = "document.getElementById('gen2').src='../static/farm\ clicked.png'" onmouseup = "document.getElementById('gen2').src='../static/farm buyable.png'">
+        <img data-toggle="tooltip" title="Cost: 5000 --- Multiplier: 2" id="up2" src="../static/farm upgrade buyable.png" onmouseover = "document.getElementById('up2').src='../static/farm upgrade hover.png'" onmouseout = "document.getElementById('up2').src='../static/farm upgrade buyable.png'">
         <p id="gen2p"> Cost: 12000 --- Generates 47cps. You have 0</p>
 	
 	

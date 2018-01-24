@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>StereoIsomers: Cookie Clicker</title>
+    <title>StereoIsomers</title>
 
     {% set messages = get_flashed_messages() %}
     {% for message in messages %}
@@ -64,9 +64,9 @@
     </header>
 
     <section id="about">
-      <div class="container" style="margin-left: 0; margin-right: 0; padding-left: 200px">
-        <div class="row">
-          <div style="margin: 0" class="col-lg-8">
+      <div class="container-fluid">
+        <div style="display: flex; justify-content: center;" class="row">
+          <div style="margin: 0" class="col-lg-4">
             <h2>About Cookie Clicker</h2>
             <p class="lead">This is an addicting game about building your very own cookie generating kingdom. To get a taste of how addicting it is, try clicking the cookie on the right. You start out only being able to get cookies by clicking the big cookie, but soon, you can buy auto clickers, grandmas, and even farms to create cookies for you while you lay back and watch your cookie wealth grow. Here are some features in our version:</p>
             <ul>
@@ -77,7 +77,7 @@
             </ul>
           </div>
 
-	  <div style="margin-right: 0" class="col-lg-4">
+	  <div style="padding-left: 15em; padding-top: 3em;" class="col-lg-4">
 	    <img id="cookie" src="../static/cookie.png">
 	  </div>
         </div>

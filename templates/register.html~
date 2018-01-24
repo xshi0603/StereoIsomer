@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>StereoIsomers: Cookie Clicker</title>
+    <title>Register</title>
 
     {% set messages = get_flashed_messages() %}
     {% for message in messages %}
@@ -59,7 +59,15 @@
       </div>
     </nav>
     
-    <div style="padding-top: 100px" class="login">
+    <div style="padding-top: 100px">
+      <div class="text-center">
+      {% set messages = get_flashed_messages() %}
+      {% for message in messages %}
+      <h3> {{message}} </h3>
+      {% endfor %}
+      </div>
+
+      <div class="login">
       <div class="login-screen">
 	<div class="app-title">
 	  <h1>Register</h1>
@@ -73,7 +81,7 @@
 	    </div>
 	    
 	    <div class="control-group">
-	      <input type="password" name="newPassword" class="login-field" placeholder="password" id="login-pass">
+	      <input type="password" name="newPassword" class="login-field" placeholder="password" id="login-pass" required>
 	      <label class="login-field-icon fui-lock" for="login-pass"></label>
 	    </div>
 	    
@@ -83,8 +91,8 @@
 	  </div>
 	</form>
       </div>
-    </div>
-
+      </div>
+      </div>
     </div>
     
     <!-- Footer -->

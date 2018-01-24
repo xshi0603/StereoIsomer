@@ -228,8 +228,8 @@ def upcase():
 
 @cookie_app.route('/logout', methods=['GET'])
 def logout():
-    if 'username' in session:
-        session.pop('username')
+    if 'user' in session:
+        session.pop('user')
         flash("Logged out.")
     return redirect(url_for("root"))
 
