@@ -60,36 +60,46 @@
     
 
     <div id="game" class="container-fluid">
-      <div class="cookiediv col-lg-4">
-	<h1 id="cookieBank">Cookies: 0</h1>
+      <div class="cookiediv col-4">
+	<h1 class="center-block text-center" id="cookieBank">Cookies: 0</h1>
 	<img id="cookie" src="../static/cookie.png">
+<<<<<<< HEAD
+
+	<div class="center-block text-center">
+	  <button id="save"> Save </button>
+	</div>
+=======
+	<br>
+	<button id="save"> Save </button>
+>>>>>>> 9d56cb91e356edfc8822bd1eeec5763ea24495a4
       </div> <!-- end cookiediv -->
       
-      <div class="gendiv col-lg-4">
+      <div class="gendiv col-8">
 	<!-- GENERATOR 0 --->
 	<img id="gen0" src="../static/cursor buyable.png" onmousedown = "document.getElementById('gen0').src='../static/cursor clicked.png'" onmouseup = "document.getElementById('gen0').src='../static/cursor buyable.png'">
 
 	<img data-toggle="tooltip" title="Cost: 500 --- Multiplier: 1.5" id="up0" src="../static/cursor upgrade buyable.png" onmouseover = "document.getElementById('up0').src='../static/cursor upgrade hover.png'" onmouseout = "document.getElementById('up0').src='../static/cursor upgrade buyable.png'">
-	<p id="gen0p"> Cost: 100 --- Generates 1cps. You have 0</p> 
+	<p id="gen0p"> Cost: 100. Generates 1cps. 0 owned</p> 
 	
 
 	<!-- GENERATOR 1 --->
 	<img id="gen1" src="../static/grandma buyable.png" onmousedown = "document.getElementById('gen1').src='../static/grandma\ clicked.png'" onmouseup = "document.getElementById('gen1').src='../static/grandma buyable.png'">
 	<img data-toggle="tooltip" title="Cost: 5000 --- Multiplier: 2" id="up1" src="../static/grandma upgrade buyable.png" onmouseover = "document.getElementById('up1').src='../static/grandma upgrade hover.png'" onmouseout = "document.getElementById('up1').src='../static/grandma upgrade buyable.png'">
-	<p id="gen1p"> Cost: 1100 --- Generates 8cps. You have 0</p> 
+	<p id="gen1p"> Cost: 1100. Generates 8cps. 0 owned</p> 
 
         <!-- GENERATOR 2 --->
         <img id="gen2" src="../static/farm buyable.png" onmousedown = "document.getElementById('gen2').src='../static/farm\ clicked.png'" onmouseup = "document.getElementById('gen2').src='../static/farm buyable.png'">
         <img data-toggle="tooltip" title="Cost: 5000 --- Multiplier: 2" id="up2" src="../static/farm upgrade buyable.png" onmouseover = "document.getElementById('up2').src='../static/farm upgrade hover.png'" onmouseout = "document.getElementById('up2').src='../static/farm upgrade buyable.png'">
-        <p id="gen2p"> Cost: 12000 --- Generates 47cps. You have 0</p>
+        <p id="gen2p"> Cost: 12000. Generates 47cps. 0 owned</p>
 	
 	
-	<br>
 	<button id="upClickVal"> Upgrade Cookie Click Value </button> <p id="upClickValP"> Cost: 50 --- Upgrade Click Value to 2 cps</p>
+<<<<<<< HEAD
+=======
 
-	<button id="save"> Save </button>
-	<br>
+	<br><br><br>
 	Weather is: {{ temp }} degrees F
+>>>>>>> 9d56cb91e356edfc8822bd1eeec5763ea24495a4
       </div> <!-- end gendiv -->
     </div> <!-- end game div -->
 
