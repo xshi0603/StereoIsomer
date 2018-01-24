@@ -9,7 +9,7 @@ Period 8
 
 **Video Link:**
 
-<a href = "https://www.youtube.org/"> youtube </a>
+<a href = "https://www.youtube.com/"> youtube </a>
 
 **Overview:**
 
