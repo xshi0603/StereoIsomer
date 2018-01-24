@@ -36,10 +36,9 @@ body {
 }
 
 .gendiv{
-    padding-top: 4em;
+    padding-top: 10vh;
     float: right;
     text-align: right;
-    //width: 60%;
 }
 
 button {
@@ -66,7 +65,7 @@ button:active{
 }
 
 #game{
-    padding-top: 56px;
+    padding-top: 2em;
     padding-left: 2em;
 
     font-family: monospace;
@@ -78,16 +77,21 @@ button:active{
     text-shadow: 2px 2px black;
 }
 
+img{
+    height: 10vh;
+}
+
 #cookie{
     padding-top: 1.5em;
     padding-left: 3em;
-    width: 380px;
+    height: auto;
+    width: 90%;
+    min-width: 100px;
 }
 
-img{
-    width:50%;
+#save{
+    margin-top: 1.5em;
 }
-
 #cookie:active{
     -webkit-transform: scale(0.9);
     -ms-transform: scale(0.9);
@@ -95,18 +99,18 @@ img{
 }
 
 #cookieBank{
-    padding-top: 3em;
-    padding-left: 2.5em;
+    padding-top: 10vh;
+    //padding-left: 2.5em;
 }
 
-#up0{
-    width: 50px;
+#gen0p{
+    text-align: right;
 }
 
-#up1{
-    width: 50px;
+#gen2p{
+    text-align: right;
 }
 
-#up2{
-    width: 50px;
+#gen1p{
+    text-align: right;
 }
