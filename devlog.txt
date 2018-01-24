@@ -49,6 +49,7 @@ scaled generator costs
 
 xingtaoShi -- 2018-01-06 16:03:23
 made flask app modifications and some files
+
 xingtaoShi -- 2018-01-08 13:50:10
 made flask app login/register
 
@@ -81,6 +82,9 @@ added generators to database
 
 jackieW -- 2018-01-17 13:37:32
 added generator
+
+mdA -- 2018-01-18 13:31:00
+screenshotted and edited original cookie clicker buttons, added to repo
 
 xingtaoShi -- 2018-01-18 14:00:37
 stuffies with saving
@@ -118,3 +122,8 @@ update credits
 xingtaoShi -- 2018-01-23 18:07:22
 fixed bug
 
+mdA -- 2018-01-24 19:36:00
+added templates for new website's design
+
+mdA -- 2018-01-24 07:23:00
+renovated website completely, fixed some graphical bugs
